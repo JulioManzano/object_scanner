@@ -1,0 +1,546 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+directive @base64(
+    "Action to perform: \"encode\" or \"decode\""
+    op: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+CamelCase result.
+"""
+directive @camel_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with its first character capitalized and the rest lowercased.
+"""
+directive @capitalize on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Ceils value. Supports both String and Float fields.
+"""
+directive @ceil on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return centered in a string of length width. Padding is done using the specified fillchar
+The original string is returned if width is less than or equal to len(s).
+"""
+directive @center(
+    "Value to fill the returned str"
+    fillchar: String,
+    "Value to returned str lenght"
+    width: Int!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+directive @currency(
+    "Currency symbol (default: $)"
+    symbol: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Format the date from resolving the field by dateutil module.
+"""
+directive @date(
+    "A format given by dateutil module"
+    format: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Default to given value if None or ""
+"""
+directive @default(
+    "Value to default to"
+    to: String!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Floors value. Supports both String and Float fields.
+"""
+directive @floor on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+KebabCase result.
+"""
+directive @kebab_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Lowercases result.
+"""
+directive @lowercase on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+String formatting like a specify Python number formatting
+"""
+directive @number(
+    "Value to default to"
+    as: String!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with all occurrences of substring old replaced by new.
+If the optional argument count is given, only the first count occurrences are replaced.
+"""
+directive @replace(
+    "Value to returned str lenght"
+    count: Int,
+    "Value of new character to replace"
+    new: String!,
+    "Value of old character to replace"
+    old: String!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+directive @sample(
+    "Value to default to"
+    k: Int!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Shuffle the list in place
+"""
+directive @shuffle on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+SnakeCase result.
+"""
+directive @snake_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with the leading and trailing characters removed.
+The chars argument is a string specifying the set of characters to be removed.
+If omitted or None, the chars argument defaults to removing whitespace.
+The chars argument is not a prefix or suffix; rather, all combinations of its values are stripped.
+"""
+directive @strip(
+    "Value to specify the set of characters to be removed"
+    chars: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with uppercase characters converted to lowercase and vice versa.
+"""
+directive @swap_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a titlecased version of the string where words start with an
+uppercase character and the remaining characters are lowercase.
+"""
+directive @title_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Uppercases result.
+"""
+directive @uppercase on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+type ClientListType {
+    "Client list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [ClientType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type ClientType {
+    ci: BigInt
+    "Nombres"
+    first_name: String
+    id: Int
+    "Apellido Materno"
+    last_name: String
+    "Apellido Paterno"
+    middle_name: String
+    mobile_phone: BigInt
+    "CI"
+    nit: String
+    "Fecha de registro"
+    register_at: CustomDateTime
+}
+
+type CreateGroup {
+    group: GroupType
+}
+
+type CreateProduct {
+    product: ProductType
+}
+
+type CreateProfile {
+    profile: ProfileType
+}
+
+type CreateResource {
+    resource: ResourceType
+}
+
+type CreateUser {
+    user: UserType
+}
+
+type CreateUserWithProfile {
+    user: UserType
+}
+
+type DeleteProduct {
+    product: ProductType
+}
+
+type DeleteProfile {
+    profile: ProfileType
+}
+
+type DeleteResource {
+    resource: ResourceType
+}
+
+type GroupListType {
+    "Group list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [GroupType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type GroupType {
+    id: Int
+    "name"
+    name: String
+    "permissions"
+    permissions: [PermissionType!]
+    user: [UserType!]
+}
+
+type Mutation {
+    create_group(name: String!, permissions: GenericScalar): CreateGroup
+    create_product(code: String, description: String, is_control_by_date_expired: Boolean, is_on_sale: Boolean, name: String!, price_unit: Float!, price_unit_purchase: Float): CreateProduct
+    create_profile(ci: Int, first_name: String!, gender: String!, home_address: String, last_name: String!, middle_name: String!, mobile_phone: Int): CreateProfile
+    create_resource(file: String!, resource_id: ID!, resource_name: String!, venue_id: Int!): CreateResource
+    create_user(groups: GenericScalar, password: String!, profile_id: ID!, username: String!): CreateUser
+    create_user_with_profile(first_name: String!, last_name: String!, mobile_phone: Int!, password: String!, username: String!): CreateUserWithProfile
+    delete_product(id: ID!): DeleteProduct
+    delete_profile(id: ID!): DeleteProfile
+    delete_resource(id: ID!): DeleteResource
+    token_auth(password: String!, username: String!): TokenAuth
+    update_group(id: ID!, name: String, permissions: GenericScalar): UpdateGroup
+    update_product(code: String, description: String, id: ID!, is_active: Boolean, is_control_by_date_expired: Boolean, is_on_sale: Boolean, is_sold_out: Boolean, name: String, price_unit: Float, price_unit_purchase: Float): UpdateProduct
+    update_profile(ci: Int, first_name: String, gender: String, home_address: String, id: ID!, last_name: String, middle_name: String, mobile_phone: Int, nit_billing: String, social_reason: String): UpdateProfile
+    update_resource(file: String!, id: ID!): UpdateResource
+    update_user(groups: GenericScalar, id: ID!, is_active: Boolean, password: String): UpdateUser
+    verify_account(platform: String!, token: String!): VerifyAccount
+}
+
+type PermissionListType {
+    "Permission list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [PermissionType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type PermissionType {
+    "codename"
+    codename: String
+    group: [GroupType!]
+    id: Int
+    "name"
+    name: String
+    user: [UserType!]
+}
+
+type ProductListType {
+    "Product list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [ProductType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type ProductType {
+    "Código QR/OR CODIGO DE BARRAS"
+    code: String
+    "Fecha de creación"
+    created_at: CustomDateTime
+    "Descripción"
+    description: String
+    id: Int
+    image: String
+    image_thumb: String
+    images: [String]
+    is_active: Boolean
+    is_assigned: Boolean
+    is_control_by_date_expired: Boolean
+    is_on_sale: Boolean
+    is_sold_out: Boolean
+    is_track_inventory: Boolean
+    "Nombre"
+    name: String
+    "Precio Unitario"
+    price_unit: Float
+    "Precio Unitario Compra"
+    price_unit_purchase: Float
+    quantity_available: Int
+    "Fecha de registro"
+    register_at: CustomDate
+}
+
+type ProfileListType {
+    "Profile list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [ProfileType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type ProfileType {
+    ci: BigInt
+    "Nombres"
+    first_name: String
+    gender: String
+    "Dirección"
+    home_address: String
+    id: Int
+    is_assigned: Boolean
+    "Apellido Materno"
+    last_name: String
+    "Apellido Paterno"
+    middle_name: String
+    mobile_phone: BigInt
+    "Fecha de registro"
+    register_at: CustomDateTime
+    rol: String
+    user: UserType
+}
+
+type Query {
+    client(
+        "Django object unique identification field"
+        id: ID!
+    ): ClientType
+    "Client list"
+    clients(id: Float, ordering: String, search: String): ClientListType
+    group(
+        "Django object unique identification field"
+        id: ID!
+    ): GroupType
+    "Group list"
+    groups(id: Float, ordering: String, search: String): GroupListType
+    permission(
+        "Django object unique identification field"
+        id: ID!
+    ): PermissionType
+    "Permission list"
+    permissions(id: Float, ordering: String, search: String): PermissionListType
+    product(
+        "Django object unique identification field"
+        id: ID!
+    ): ProductType
+    "Product list"
+    products(assigned_to: String, assigned_to_distributor_id: String, assigned_to_vendor_id: String, assigned_to_warehouse_id: String, category_id: Float, id: Float, is_active: Boolean, is_on_sale: Boolean, ordering: String, search: String, unassigned_to_distributor_id: String, unassigned_to_vendor_id: String, unassigned_to_warehouse_id: String, venue_id: Float): ProductListType
+    profile(
+        "Django object unique identification field"
+        id: ID!
+    ): ProfileType
+    "Profile list"
+    profiles(id: Float, ordering: String, search: String, unassigned_to_vendor_id: String, user__name: String, venue_id: Float): ProfileListType
+    resource(
+        "Django object unique identification field"
+        id: ID!
+    ): ResourceType
+    "Resource list"
+    resources(id: Float, ordering: String, resource_id: Float, resource_name: String, search: String): ResourceListType
+    user(
+        "Django object unique identification field"
+        id: ID!
+    ): UserType
+    "User list"
+    users(
+        date_joined: DateTime,
+        email: String,
+        first_name: String,
+        groups: [ID],
+        "Django object unique identification field"
+        id: ID,
+        is_active: Boolean,
+        is_staff: Boolean,
+        is_superuser: Boolean,
+        last_login: DateTime,
+        last_name: String,
+        password: String,
+        user_permissions: [ID],
+        username: String
+    ): UserListType
+}
+
+type ResourceListType {
+    "Resource list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [ResourceType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type ResourceType {
+    id: Int
+    "Imagen"
+    image: String
+    "Imagen Mini"
+    image_thumb: String
+    "ID"
+    resource_id: Int
+    "Modelo"
+    resource_name: String
+    "Tipo"
+    type: String
+}
+
+type TokenAuth {
+    message: String
+    profile: ProfileType
+    token: String
+}
+
+type UpdateGroup {
+    group: GroupType
+}
+
+type UpdateProduct {
+    product: ProductType
+}
+
+type UpdateProfile {
+    profile: ProfileType
+}
+
+type UpdateResource {
+    resource: ResourceType
+}
+
+type UpdateUser {
+    user: UserType
+}
+
+type UserListType {
+    "User list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [UserType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type UserType {
+    "date joined"
+    date_joined: CustomDateTime
+    "email address"
+    email: String
+    "first name"
+    first_name: String
+    groups: [GroupType]
+    id: Int
+    "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+    is_active: Boolean
+    "Designates whether the user can log into this admin site."
+    is_staff: Boolean
+    "Designates that this user has all permissions without explicitly assigning them."
+    is_superuser: Boolean
+    "last login"
+    last_login: CustomDateTime
+    "last name"
+    last_name: String
+    "password"
+    password: String
+    profile: ProfileType
+    roles: String
+    "Specific permissions for this user."
+    user_permissions: [PermissionType!]
+    "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+    username: String
+}
+
+type VerifyAccount {
+    profile: ProfileType
+    token: String
+}
+
+"BigInt is an extension of the regular Int field that supports Integers bigger than a signed 32-bit integer."
+scalar BigInt
+
+scalar CustomDate
+
+scalar CustomDateTime
+
+"""
+
+The `DateTime` scalar type represents a DateTime
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar DateTime
+
+"""
+
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar

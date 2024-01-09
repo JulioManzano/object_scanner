@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:untitled/config/router.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled/core/config/router.dart';
+import 'package:untitled/core/constants/constants.dart';
+import 'package:untitled/presentation/provider/data_info/main_provider.dart';
+import 'package:untitled/presentation/provider/data_info/navigation_provider.dart';
+import 'package:untitled/presentation/provider/data_info/user_provider.dart';
 
-void main() => runApp(const ProviderScope(child: MyApp()));
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,14 +14,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: MaterialApp.router(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => MainProvider()),
+          ChangeNotifierProvider(create: (_) => UserProvider()),
+          ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ],
+        child: MaterialApp.router(
+          title: 'Demo AA',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
+            useMaterial3: true,
+          ),
+          routerConfig: appRouter,
         ),
-        routerConfig: appRouter,
       ),
     );
   }
