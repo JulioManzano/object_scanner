@@ -6,8 +6,13 @@ import 'package:untitled/presentation/screens/products/new_product/widget/previe
 import 'package:untitled/presentation/widget/components/app_bar_basic.dart';
 
 class FormProductScreen extends StatelessWidget {
-  const FormProductScreen({super.key, this.idProduct,});
+  const FormProductScreen({
+    super.key,
+    this.idProduct,
+  });
+
   final String? idProduct;
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

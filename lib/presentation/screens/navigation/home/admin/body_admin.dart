@@ -13,7 +13,6 @@ class BodyAdmin extends StatelessWidget {
       children: [
         const Text("ADMIN"),
         const Expanded(child: ListProducts()),
-
         Center(
           child: BasicButton(
             onTap: () {

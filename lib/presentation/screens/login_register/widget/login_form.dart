@@ -4,7 +4,6 @@ import 'package:untitled/presentation/provider/data_info/main_provider.dart';
 
 import '../../../../core/config/enviroment.dart';
 import '../../../../core/constants/constants.dart';
-import '../../../../core/utils/dialog_utils.dart';
 import '../../../../data/service/auth_service.dart';
 import '../../../../styles/text_style.dart';
 import '../../../provider/data_info/loading_notifier.dart';
@@ -70,21 +69,21 @@ class _LoginFormState extends State<LoginForm> {
 
   login() async {
     loadingN.changeValue(true);
-    var user = await AuthService().signInEmailAndPassword(
-      emailController.text.trim(),
-      passwordController.text.trim()
-    );
+    var user = await AuthService().signInUsernameAndPassword(
+        emailController.text.trim(), passwordController.text.trim());
+    loadingN.changeValue(false);
 
-    if (user != null && context.mounted  && user.token != null) {
+    if (user != null && context.mounted && user.token != null) {
       //write profile data
       context.read<UserProvider>().setUserNN(user);
       context.read<MainProvider>().savePreference('token', user.token!);
 
       Enviroment.setPrivate(user.token!);
-      Navigator.of(context).pushReplacement(
+      Navigator.popUntil(context, (route) => route.isFirst);
+      Navigator.push(
+        context,
         MaterialPageRoute(builder: (_) => const Wrapper()),
       );
     }
-    loadingN.changeValue(false);
   }
 }

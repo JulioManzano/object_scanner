@@ -90,7 +90,8 @@ class _DialogListOptionsRadioState extends State<DialogListOptionsRadio> {
               ),
             ),
           ],
-        ),const SizedBox(height: 16),
+        ),
+        const SizedBox(height: 16),
       ],
     );
   }

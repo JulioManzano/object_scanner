@@ -8,4 +8,3 @@ class ItemProduct extends StatelessWidget {
     return const Placeholder();
   }
 }
-

@@ -21,13 +21,20 @@ class AppBarBasic extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: titleWidget ?? Text(title ?? '' , style: StyleTxt.appBarTitle,),
+      title: titleWidget ??
+          Text(
+            title ?? '',
+            style: StyleTxt.appBarTitle,
+          ),
       backgroundColor: kPrimaryColor,
       automaticallyImplyLeading: automaticallyImplyLeading,
       centerTitle: centerTitle,
       titleSpacing: 0,
       actions: [
-        if(titleWidget!=null)const SizedBox(width: 40,),
+        if (titleWidget != null)
+          const SizedBox(
+            width: 40,
+          ),
         /*IconButton(
           onPressed: () {
             //Navigator.of(context).pop();
@@ -48,7 +55,6 @@ class AppBarBasic extends StatelessWidget implements PreferredSizeWidget {
           color: Colors.white,
         ),
       ),
-
     );
   }
 

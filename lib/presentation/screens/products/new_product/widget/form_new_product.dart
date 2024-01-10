@@ -9,7 +9,7 @@ class FormNewProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formP = Provider.of<NewProductFormProvider>(context , listen: false);
+    final formP = Provider.of<NewProductFormProvider>(context, listen: false);
     return Form(
       child: Column(
         children: [
@@ -29,9 +29,7 @@ class FormNewProduct extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           BasicButton(
-            onTap: () {
-
-            },
+            onTap: () {},
             textButton: "Agregar",
           )
         ],

@@ -6,19 +6,13 @@ import '../../domain/models/user.dart';
 import '../../models/api.graphql.dart';
 
 class AuthService {
-  Future<TokenAuthEmail$Mutation$TokenAuth?> signInEmailAndPassword(
-    String username,
-    String password,
-  ) async {
-    print("USERNAME: $username");
-    print("PASSWORD: $password");
-    final GraphQLClient client = getGraphQLClient(service: 'token_auth  ');
+  Future<TokenAuth$Mutation$TokenAuth?> signInUsernameAndPassword(
+      String username, String password) async {
+    final GraphQLClient client = getGraphQLClient(service: 'token_auth_email');
     final MutationOptions options = MutationOptions(
-      document: TOKEN_AUTH_EMAIL_MUTATION_DOCUMENT,
-      variables: TokenAuthEmailArguments(
-        username: username,
-        password: password,
-      ).toJson(),
+      document: TOKEN_AUTH_MUTATION_DOCUMENT,
+      variables: TokenAuthArguments(username: username, password: password)
+          .toJson(),
     );
 
     final QueryResult result = await client.mutate(options);
@@ -32,8 +26,8 @@ class AuthService {
 
     if (!result.hasException && result.isNotLoading) {
       print("LOGIN: ${result.data!}");
-      TokenAuthEmail$Mutation$TokenAuth getAccount =
-          TokenAuthEmail$Mutation.fromJson(result.data!).tokenAuth!;
+      TokenAuth$Mutation$TokenAuth getAccount =
+          TokenAuth$Mutation.fromJson(result.data!).tokenAuth!;
       return getAccount;
     }
     return null;
@@ -64,7 +58,7 @@ class AuthService {
     return null;
   }
 
-  Future<User?> createUserEmailAndPassword(
+  Future<User?> createUserAndPassword(
       String email, String password, Function(String error) onError) async {
     return User(id: 1, name: "Julio", role: "admin");
     return null;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/constants/constants.dart';
-import '../../../../core/utils/dialog_utils.dart';
 import '../../../../data/service/auth_service.dart';
 import '../../../../styles/text_style.dart';
 import '../../../provider/data_info/loading_notifier.dart';
@@ -93,12 +93,9 @@ class _RegisterFormState extends State<RegisterForm> {
   register() async {
     if (_formKey.currentState!.validate()) {
       loadingN.changeValue(true);
-      var res = await AuthService().createUserEmailAndPassword(
+      var res = await AuthService().signInUsernameAndPassword(
         emailController.text,
         passwordController.text,
-        (error) {
-          DialogUtils.showSnackBar(context, title: error, error: true);
-        },
       );
       if (res != null && context.mounted) {
         Navigator.of(context).pushReplacement(

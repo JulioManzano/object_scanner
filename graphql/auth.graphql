@@ -1,0 +1,26 @@
+mutation VerifyAccount($token: String!, $platform: String!){
+    verify_account(token: $token, platform: $platform) {
+        profile{
+            id
+            first_name
+            last_name
+            role
+            gender
+        }
+        token
+    }
+}
+
+mutation TokenAuth($username: String!, $password: String!){
+    token_auth(username: $username, password: $password) {
+        profile{
+            id
+            first_name
+            last_name
+            role
+            gender
+        }
+        token
+        message
+    }
+}

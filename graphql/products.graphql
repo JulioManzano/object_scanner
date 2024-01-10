@@ -1,0 +1,56 @@
+query Products($limit: Int, $offset: Int, $search: String,  $venue_id: Float,
+    $is_active: Boolean){
+    products(search: $search, venue_id: $venue_id, ordering: "name",
+        is_active: $is_active){
+        totalCount
+        results(limit: $limit, offset: $offset){
+            id
+            code
+            description
+            image
+            image_thumb
+            is_active
+            images
+            is_sold_out
+            name
+            quantity_available
+            price_unit
+            register_at
+        }
+    }
+}
+
+query Product($id:ID!){
+    product(id:$id)  {
+        id
+        code
+        description
+        image
+        image_thumb
+        is_active
+        images
+        is_sold_out
+        name
+        quantity_available
+        price_unit
+        register_at
+    }
+}
+
+mutation CreateProduct($description: String!, $name: String!,  $price_unit: Float!, $code: String){
+    create_product(name: $name, price_unit: $price_unit, code: $code, description: $description){
+        product {
+            id
+        }
+    }
+}
+
+mutation UpdateProduct($description: String, $is_active: Boolean,
+    $name: String, $id: ID!, $price_unit: Float){
+    update_product(id: $id, description: $description, is_active: $is_active,
+        price_unit: $price_unit, name: $name){
+        product {
+            id
+        }
+    }
+}

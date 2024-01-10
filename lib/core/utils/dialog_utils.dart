@@ -24,12 +24,13 @@ class DialogUtils {
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
   static Future<bool?> basicDialog(
-      BuildContext context, {
-        required String title,
-        String? description,
-        String? acceptText,
-      }) async {
+    BuildContext context, {
+    required String title,
+    String? description,
+    String? acceptText,
+  }) async {
     var res = await showDialog(
         context: context,
         builder: (context) {
@@ -57,6 +58,7 @@ class DialogUtils {
         });
     return res;
   }
+
   static Future<bool?> confirmButton(
     BuildContext context, {
     required String title,
@@ -103,7 +105,6 @@ class DialogUtils {
     return res;
   }
 
-
   static Future<String?> getOptionWithList(
     List<String> options,
     BuildContext context, {
@@ -129,10 +130,10 @@ class DialogUtils {
   }
 
   static Future<List<String>> getOptionWithListCheck(
-      List<String> options,
-      BuildContext context, {
-        String title = "Seleccionar una opcion",
-      }) async {
+    List<String> options,
+    BuildContext context, {
+    String title = "Seleccionar una opcion",
+  }) async {
     return await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -151,26 +152,31 @@ class DialogUtils {
       },
     );
   }
+
   static Future<String?> getOptionWithListRadio(
-      List<String> options,
-      BuildContext context, {
-        String title = "Seleccionar una opcion",
-      }) async {
+    List<String> options,
+    BuildContext context, {
+    String title = "Seleccionar una opcion",
+  }) async {
     return await showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding: EdgeInsets.zero,
-          content: DialogListOptionsRadio(options: options, title: title,),
+          content: DialogListOptionsRadio(
+            options: options,
+            title: title,
+          ),
         );
       },
     );
   }
+
   static Future<String?> showDialogInputText(
     BuildContext context, {
     String? title,
     String? hintText,
-        String? textSet,
+    String? textSet,
   }) async {
     TextEditingController textController = TextEditingController(text: textSet);
 

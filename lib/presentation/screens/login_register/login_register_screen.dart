@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/presentation/screens/login_register/widget/login_form.dart';
+
 import '../../../core/constants/constants.dart';
-import 'widget/register_form.dart';
 
 class LoginRegisterScreen extends StatelessWidget {
   const LoginRegisterScreen({

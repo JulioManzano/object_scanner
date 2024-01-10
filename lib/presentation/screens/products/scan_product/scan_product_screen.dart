@@ -8,4 +8,3 @@ class ScanProductScreen extends StatelessWidget {
     return Scaffold();
   }
 }
-

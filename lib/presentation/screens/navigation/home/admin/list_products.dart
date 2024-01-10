@@ -8,4 +8,3 @@ class ListProducts extends StatelessWidget {
     return Column();
   }
 }
-

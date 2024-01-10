@@ -8,4 +8,3 @@ class BodyScanner extends StatelessWidget {
     return Column();
   }
 }
-

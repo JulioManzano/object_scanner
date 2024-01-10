@@ -244,10 +244,10 @@ type GroupType {
 type Mutation {
     create_group(name: String!, permissions: GenericScalar): CreateGroup
     create_product(code: String, description: String, is_control_by_date_expired: Boolean, is_on_sale: Boolean, name: String!, price_unit: Float!, price_unit_purchase: Float): CreateProduct
-    create_profile(ci: Int, first_name: String!, gender: String!, home_address: String, last_name: String!, middle_name: String!, mobile_phone: Int): CreateProfile
+    create_profile(ci: Int, first_name: String!, gender: String!, home_address: String, last_name: String!, middle_name: String!, mobile_phone: Int, role: String!): CreateProfile
     create_resource(file: String!, resource_id: ID!, resource_name: String!, venue_id: Int!): CreateResource
     create_user(groups: GenericScalar, password: String!, profile_id: ID!, username: String!): CreateUser
-    create_user_with_profile(first_name: String!, last_name: String!, mobile_phone: Int!, password: String!, username: String!): CreateUserWithProfile
+    create_user_with_profile(first_name: String!, last_name: String!, mobile_phone: Int!, password: String!, role: String!, username: String!): CreateUserWithProfile
     delete_product(id: ID!): DeleteProduct
     delete_profile(id: ID!): DeleteProfile
     delete_resource(id: ID!): DeleteResource
@@ -348,7 +348,6 @@ type ProfileType {
     "Dirección"
     home_address: String
     id: Int
-    is_assigned: Boolean
     "Apellido Materno"
     last_name: String
     "Apellido Paterno"
@@ -356,7 +355,7 @@ type ProfileType {
     mobile_phone: BigInt
     "Fecha de registro"
     register_at: CustomDateTime
-    rol: String
+    role: String
     user: UserType
 }
 
@@ -390,7 +389,7 @@ type Query {
         id: ID!
     ): ProfileType
     "Profile list"
-    profiles(id: Float, ordering: String, search: String, unassigned_to_vendor_id: String, user__name: String, venue_id: Float): ProfileListType
+    profiles(id: Float, ordering: String, role: String, search: String, user__name: String): ProfileListType
     resource(
         "Django object unique identification field"
         id: ID!

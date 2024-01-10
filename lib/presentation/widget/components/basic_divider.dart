@@ -11,4 +11,3 @@ class BasicDivider extends StatelessWidget {
     );
   }
 }
-

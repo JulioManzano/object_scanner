@@ -1,0 +1,52 @@
+query Profiles($id: Float, $ordering: String!,  $search: String!, $limit: Int, $offset: Int,){
+    profiles(id: $id, ordering: $ordering, search: $search){
+        results(limit: $limit, offset: $offset){
+            id
+            first_name
+            middle_name
+            last_name
+            role
+        }
+    }
+}
+
+query Profile($id:  ID!){
+    profile(id: $id){
+        id
+        first_name
+        last_name
+        middle_name
+        role
+    }
+}
+
+mutation CreateUserWithProfile($username: String!, $password: String!, $first_name: String!,
+    $last_name: String!, $role: String!, $mobile_phone: Int!) {
+    create_user_with_profile(username: $username, first_name: $first_name,last_name: $last_name,
+        password: $password, mobile_phone: $mobile_phone, role: $role){
+        user {
+            id
+            username
+            first_name
+            last_name
+        }
+    }
+}
+
+mutation UpdateProfile($id: ID!, $gender: String, $middle_name: String!, $ci: Int,
+    $first_name: String!, $last_name: String!, $mobile_phone: Int!, $social_reason: String,
+    $nit_billing: String, $home_address: String) {
+    update_profile(id: $id, first_name: $first_name,last_name: $last_name, ci: $ci,
+        gender: $gender, middle_name: $middle_name, mobile_phone: $mobile_phone,
+        social_reason: $social_reason, nit_billing: $nit_billing, home_address: $home_address){
+        profile {
+            id
+            ci
+            first_name
+            last_name
+            middle_name
+            home_address
+            mobile_phone
+        }
+    }
+}

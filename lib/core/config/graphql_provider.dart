@@ -13,7 +13,7 @@ GraphQLClient getGraphQLClient({required String service}) {
     '$currentUri?$service',
     defaultHeaders: Enviroment.httpLink.defaultHeaders,
   );
-
+  print(Enviroment.httpLink.defaultHeaders);
   return GraphQLClient(
     cache: GraphQLCache(),
     link: httpLink,

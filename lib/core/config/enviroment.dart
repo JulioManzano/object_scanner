@@ -2,7 +2,6 @@ import 'package:graphql/client.dart';
 
 import 'link_def.dart';
 
-
 class Enviroment {
   static HttpLink httpLink = HttpLink(
     publicUrl,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../styles/decoration.dart';
 import '../../../styles/text_style.dart';
 
@@ -37,6 +38,7 @@ class TextFieldForm extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
   final String? prefix;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width * 0.60;
