@@ -11,7 +11,7 @@ class PreviewProductScan extends StatelessWidget {
     return Column(
       children: [
         BasicButton(onTap: () {
-          context.go(RouteName.scanProduct);
+          context.push(RouteName.scanProduct);
         }, textButton: "Escanear",),
       ],
     );

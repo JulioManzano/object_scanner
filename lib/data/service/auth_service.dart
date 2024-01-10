@@ -7,12 +7,18 @@ import '../../models/api.graphql.dart';
 
 class AuthService {
   Future<TokenAuthEmail$Mutation$TokenAuth?> signInEmailAndPassword(
-      String username, String password) async {
-    final GraphQLClient client = getGraphQLClient(service: 'token_auth_email');
+    String username,
+    String password,
+  ) async {
+    print("USERNAME: $username");
+    print("PASSWORD: $password");
+    final GraphQLClient client = getGraphQLClient(service: 'token_auth  ');
     final MutationOptions options = MutationOptions(
       document: TOKEN_AUTH_EMAIL_MUTATION_DOCUMENT,
-      variables: TokenAuthEmailArguments(username: username, password: password)
-          .toJson(),
+      variables: TokenAuthEmailArguments(
+        username: username,
+        password: password,
+      ).toJson(),
     );
 
     final QueryResult result = await client.mutate(options);
@@ -39,7 +45,7 @@ class AuthService {
     final MutationOptions options = MutationOptions(
       document: VERIFY_ACCOUNT_MUTATION_DOCUMENT,
       variables:
-      VerifyAccountArguments(token: token, platform: platform).toJson(),
+          VerifyAccountArguments(token: token, platform: platform).toJson(),
     );
 
     final QueryResult result = await client.mutate(options);
@@ -52,11 +58,12 @@ class AuthService {
 
     if (!result.hasException && result.isNotLoading) {
       VerifyAccount$Mutation$VerifyAccount getAccount =
-      VerifyAccount$Mutation.fromJson(result.data!).verifyAccount!;
+          VerifyAccount$Mutation.fromJson(result.data!).verifyAccount!;
       return getAccount;
     }
     return null;
   }
+
   Future<User?> createUserEmailAndPassword(
       String email, String password, Function(String error) onError) async {
     return User(id: 1, name: "Julio", role: "admin");

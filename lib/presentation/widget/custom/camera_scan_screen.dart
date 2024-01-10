@@ -1,11 +1,9 @@
-
-import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:tflite_v2/tflite_v2.dart';
+
+
 
 class CameraScanScreen extends StatefulWidget {
   const CameraScanScreen({super.key});
@@ -22,9 +20,10 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
   String result = "";
   int count = 0;
 
+
   @override
   void dispose() async {
-    await Tflite.close();
+    //await Tflite.close();
     controller.dispose();
     super.dispose();
   }
@@ -49,23 +48,16 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
     //  // defaults to true, set to false to load resources outside assets
     //  useGpuDelegate: false,
     //);
-    InterpreterOptions interpreterOptions = InterpreterOptions();
-    Interpreter interpreter = Interpreter.fromFile(File('assets/mobilenet_v1_1.0_224.tflite'),options: InterpreterOptions(
-
-    ));
-
-
-
-
 
     final res = await Tflite.loadModel(
-      model: 'assets/mobilenet_v1_1.0_224.tflite',
-      labels: "assets/mobilenet_v1_1.0_224.txt",
-      numThreads: 1, // defaults to 1
-      isAsset: true, // defaults to true, set to false to load resources outside assets
-      useGpuDelegate: false ,
+      model: 'assets/model.tflite',
+      labels: "assets/labels.txt",
+
+      //numThreads: 1, // defaults to 1
+      //isAsset: true, // defaults to true, set to false to load resources outside assets
+      //useGpuDelegate: false ,
     );
-    print("RES: $res");
+    print("RESPONSE MODEL: $res");
   }
 
   initCamera() async {
@@ -73,7 +65,7 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
     if (await Permission.camera.request().isGranted) {
       cameras = await availableCameras();
 
-      controller = CameraController(cameras[0], ResolutionPreset.medium);
+      controller = CameraController(cameras[0], ResolutionPreset.low);
       await controller.initialize().then(
         (value) {
           controller.startImageStream((image) {
@@ -109,9 +101,9 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
         setState(() {
           result = "";
           for (var element in recognitions) {
-            print("RES: $element");
-            result +=
-                "\n${element['label'] ?? 'no label'} | ${element["confidence"]}";
+            print("RECOG: $element");
+            //result +=
+            //    "\n${element['label'] ?? 'no label'} | ${element["confidence"]}";
           }
         });
       }

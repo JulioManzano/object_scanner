@@ -12,6 +12,7 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userP = Provider.of<UserProvider>(context);
+    return Home();
     return FutureBuilder(
       future: context.read<MainProvider>().verifyAccount(),
       builder: (_, snap) {

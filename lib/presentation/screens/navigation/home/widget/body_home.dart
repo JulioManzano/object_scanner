@@ -12,10 +12,11 @@ class BodyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userP = Provider.of<UserProvider>(context);
+    print("ROLE: ${userP.user!.role}");
     switch (userP.user!.role) {
-      case RolUser.scanner:
+      case "admina":
         return const BodyScanner();
-      case RolUser.admin:
+      case "admin":
         return const BodyAdmin();
     }
 

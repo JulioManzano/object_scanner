@@ -2,6 +2,7 @@ class User {
   int id;
   String name;
   String role;
+
   User({
     required this.id,
     required this.name,

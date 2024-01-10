@@ -4,8 +4,14 @@ import 'package:untitled/models/api.graphql.dart';
 
 class UserProvider extends ChangeNotifier {
   User? userProfile;
-
-  get user => userProfile;
+  UserProvider(){
+    userProfile = User(
+      id: 1,
+      name: "Julio",
+      role: "admin",
+    );
+  }
+  User get user => userProfile!;
 
   void setUserNN(TokenAuthEmail$Mutation$TokenAuth res) {
     final profile = res.profile!;
