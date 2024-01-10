@@ -2,6 +2,7 @@ class User {
   int id;
   String name;
   String role;
+
   User({
     required this.id,
     required this.name,
@@ -10,29 +11,38 @@ class User {
 }
 
 enum RolUser {
-  admin(1),
-  supervisor(2),
-  scanner(3),
-  normal(4);
+  admin('ADM'),
+  supervisor('WAR'),
+  scanner('VEN'),
+  normal('');
 
-  final int role;
+  final String role;
 
   const RolUser(this.role);
 
-  static RolUser getRol(int role){
-    switch (role){
-      case 1: return RolUser.admin;
-      case 2: return RolUser.supervisor;
-      case 3: return RolUser.scanner;
-      default: return RolUser.normal;
+  static RolUser getRol(String role) {
+    switch (role) {
+      case 'ADM':
+        return RolUser.admin;
+      case 'WAR':
+        return RolUser.supervisor;
+      case 'VEN':
+        return RolUser.scanner;
+      default:
+        return RolUser.normal;
     }
   }
-  static String getRolName(int role){
-    switch (role){
-      case 1: return "Administrador";
-      case 2: return "Supervisor";
-      case 3: return "Scanner";
-      default: return "Sin Asignar";
+
+  static String getRolName(String role) {
+    switch (role) {
+      case 'ADM':
+        return "Administrador";
+      case 'WAR':
+        return "Supervisor";
+      case 'VEN':
+        return "Scanner";
+      default:
+        return "Sin Asignar";
     }
   }
 }

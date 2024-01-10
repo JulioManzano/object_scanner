@@ -7,12 +7,12 @@ class UserProvider extends ChangeNotifier {
 
   get user => userProfile;
 
-  void setUserNN(TokenAuthEmail$Mutation$TokenAuth res) {
+  void setUserNN(TokenAuth$Mutation$TokenAuth res) {
     final profile = res.profile!;
     userProfile = User(
       id: profile.id!,
       name: profile.firstName!,
-      role: profile.rol!,
+      role: profile.role??'',
     );
   }
 }

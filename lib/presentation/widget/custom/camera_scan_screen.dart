@@ -1,11 +1,10 @@
-
 import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
-import 'package:tflite_v2/tflite_v2.dart';
+// import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:tflite/tflite.dart';
 
 class CameraScanScreen extends StatefulWidget {
   const CameraScanScreen({super.key});
@@ -49,21 +48,19 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
     //  // defaults to true, set to false to load resources outside assets
     //  useGpuDelegate: false,
     //);
-    InterpreterOptions interpreterOptions = InterpreterOptions();
-    Interpreter interpreter = Interpreter.fromFile(File('assets/mobilenet_v1_1.0_224.tflite'),options: InterpreterOptions(
-
-    ));
-
-
-
-
+    // InterpreterOptions interpreterOptions = InterpreterOptions();
+    // Interpreter interpreter = Interpreter.fromFile(
+    //     File('assets/mobilenet_v1_1.0_224.tflite'),
+    //     options: InterpreterOptions());
 
     final res = await Tflite.loadModel(
       model: 'assets/mobilenet_v1_1.0_224.tflite',
       labels: "assets/mobilenet_v1_1.0_224.txt",
-      numThreads: 1, // defaults to 1
-      isAsset: true, // defaults to true, set to false to load resources outside assets
-      useGpuDelegate: false ,
+      numThreads: 1,
+      // defaults to 1
+      isAsset: true,
+      // defaults to true, set to false to load resources outside assets
+      useGpuDelegate: false,
     );
     print("RES: $res");
   }

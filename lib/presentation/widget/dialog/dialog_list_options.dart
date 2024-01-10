@@ -23,7 +23,9 @@ class DialogListOptions extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop(options[index]);
             },
-            title: Text(options[index],),
+            title: Text(
+              options[index],
+            ),
             selectedColor: kPrimaryColor,
           );
         },

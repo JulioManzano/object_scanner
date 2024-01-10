@@ -6,12 +6,12 @@ import '../../domain/models/user.dart';
 import '../../models/api.graphql.dart';
 
 class AuthService {
-  Future<TokenAuthEmail$Mutation$TokenAuth?> signInEmailAndPassword(
+  Future<TokenAuth$Mutation$TokenAuth?> signInUsernameAndPassword(
       String username, String password) async {
     final GraphQLClient client = getGraphQLClient(service: 'token_auth_email');
     final MutationOptions options = MutationOptions(
-      document: TOKEN_AUTH_EMAIL_MUTATION_DOCUMENT,
-      variables: TokenAuthEmailArguments(username: username, password: password)
+      document: TOKEN_AUTH_MUTATION_DOCUMENT,
+      variables: TokenAuthArguments(username: username, password: password)
           .toJson(),
     );
 
@@ -26,8 +26,8 @@ class AuthService {
 
     if (!result.hasException && result.isNotLoading) {
       print("LOGIN: ${result.data!}");
-      TokenAuthEmail$Mutation$TokenAuth getAccount =
-          TokenAuthEmail$Mutation.fromJson(result.data!).tokenAuth!;
+      TokenAuth$Mutation$TokenAuth getAccount =
+          TokenAuth$Mutation.fromJson(result.data!).tokenAuth!;
       return getAccount;
     }
     return null;
@@ -39,7 +39,7 @@ class AuthService {
     final MutationOptions options = MutationOptions(
       document: VERIFY_ACCOUNT_MUTATION_DOCUMENT,
       variables:
-      VerifyAccountArguments(token: token, platform: platform).toJson(),
+          VerifyAccountArguments(token: token, platform: platform).toJson(),
     );
 
     final QueryResult result = await client.mutate(options);
@@ -52,12 +52,13 @@ class AuthService {
 
     if (!result.hasException && result.isNotLoading) {
       VerifyAccount$Mutation$VerifyAccount getAccount =
-      VerifyAccount$Mutation.fromJson(result.data!).verifyAccount!;
+          VerifyAccount$Mutation.fromJson(result.data!).verifyAccount!;
       return getAccount;
     }
     return null;
   }
-  Future<User?> createUserEmailAndPassword(
+
+  Future<User?> createUserAndPassword(
       String email, String password, Function(String error) onError) async {
     return User(id: 1, name: "Julio", role: "admin");
     return null;

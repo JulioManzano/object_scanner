@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class DialogListOptionsCheck extends StatefulWidget {
   const DialogListOptionsCheck({
     super.key,
@@ -15,6 +14,7 @@ class DialogListOptionsCheck extends StatefulWidget {
 
 class _DialogListOptionsCheckState extends State<DialogListOptionsCheck> {
   List<String> optionsSelect = [];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -31,7 +31,6 @@ class _DialogListOptionsCheckState extends State<DialogListOptionsCheck> {
             title: Text(
               widget.options[index],
             ),
-
             trailing: Checkbox(
               value: optionsSelect.contains(widget.options[index]),
               onChanged: (bool? check) {

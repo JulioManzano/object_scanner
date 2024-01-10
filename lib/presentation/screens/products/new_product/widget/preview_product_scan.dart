@@ -10,9 +10,12 @@ class PreviewProductScan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BasicButton(onTap: () {
-          context.go(RouteName.scanProduct);
-        }, textButton: "Escanear",),
+        BasicButton(
+          onTap: () {
+            context.go(RouteName.scanProduct);
+          },
+          textButton: "Escanear",
+        ),
       ],
     );
   }
