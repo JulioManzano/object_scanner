@@ -5,7 +5,7 @@ import '../../core/config/graphql_provider.dart';
 import '../../models/api.graphql.dart';
 
 class ObjectModelService {
-  Future<List<Object?>> getProducts({
+  Future<List<Object?>> getModels({
     required int limit,
     required int offset,
     String? search,
@@ -19,7 +19,8 @@ class ObjectModelService {
         limit: limit,
         offset: offset,
         venue_id: venueId,
-        ordering: ordering, search: search,
+        ordering: ordering,
+        search: search,
       ).toJson(),
     );
 
