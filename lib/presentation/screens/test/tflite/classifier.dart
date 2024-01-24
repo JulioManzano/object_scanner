@@ -53,19 +53,13 @@ class Classifier {
   /// Loads interpreter from asset
   void loadModel() async {
     try {
-      /*interpreter = interpreter ??
-          await Interpreter.fromAsset(
-            MODEL_FILE_NAME,
-            options: InterpreterOptions()..threads = 4,
-          );*/
-
       var outputTensors = _interpreter.getOutputTensors();
       _outputShapes = [];
       _outputTypes = [];
-      outputTensors.forEach((tensor) {
+      for (var tensor in outputTensors) {
         _outputShapes.add(tensor.shape);
         _outputTypes.add(tensor.type);
-      });
+      }
     } catch (e) {
       print("Error while creating interpreter: $e");
     }
@@ -84,7 +78,7 @@ class Classifier {
   /// Pre-process the image
   TensorImage getProcessedImage(TensorImage inputImage) {
     padSize = max(inputImage.height, inputImage.width);
-    imageProcessor ??= ImageProcessorBuilder()
+    imageProcessor = ImageProcessorBuilder()
         .add(ResizeWithCropOrPadOp(padSize, padSize))
         .add(ResizeOp(INPUT_SIZE, INPUT_SIZE, ResizeMethod.bilinear))
         .build();
@@ -93,13 +87,8 @@ class Classifier {
   }
 
   /// Runs object detection on the input image
-  Map<String, dynamic>? predict(imageLib.Image image) {
+  Map<String, dynamic> predict(imageLib.Image image) {
     var predictStartTime = DateTime.now().millisecondsSinceEpoch;
-
-    if (_interpreter == null) {
-      print("Interpreter not initialized");
-      return null;
-    }
 
     var preProcessStart = DateTime.now().millisecondsSinceEpoch;
 
@@ -133,6 +122,7 @@ class Classifier {
     var inferenceTimeStart = DateTime.now().millisecondsSinceEpoch;
 
     // run inference
+    print("PASO 11");
     _interpreter.runForMultipleInputs(inputs, outputs);
 
     var inferenceTimeElapsed =
@@ -193,8 +183,8 @@ class Classifier {
   }
 
   /// Gets the interpreter instance
-  Interpreter get interpreter => _interpreter;
+  Interpreter? get interpreter => _interpreter;
 
   /// Gets the loaded labels
-  List<String> get labels => _labels;
+  List<String>? get labels => _labels;
 }

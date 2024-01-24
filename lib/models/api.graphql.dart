@@ -658,6 +658,411 @@ class UpdateProfile$Mutation extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class CreateResource$Mutation$CreateResource$Resource extends JsonSerializable
+    with EquatableMixin {
+  CreateResource$Mutation$CreateResource$Resource();
+
+  factory CreateResource$Mutation$CreateResource$Resource.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateResource$Mutation$CreateResource$ResourceFromJson(json);
+
+  int? id;
+
+  @override
+  List<Object?> get props => [id];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CreateResource$Mutation$CreateResource$ResourceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateResource$Mutation$CreateResource extends JsonSerializable
+    with EquatableMixin {
+  CreateResource$Mutation$CreateResource();
+
+  factory CreateResource$Mutation$CreateResource.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateResource$Mutation$CreateResourceFromJson(json);
+
+  CreateResource$Mutation$CreateResource$Resource? resource;
+
+  @override
+  List<Object?> get props => [resource];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CreateResource$Mutation$CreateResourceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateResource$Mutation extends JsonSerializable with EquatableMixin {
+  CreateResource$Mutation();
+
+  factory CreateResource$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$CreateResource$MutationFromJson(json);
+
+  @JsonKey(name: 'create_resource')
+  CreateResource$Mutation$CreateResource? createResource;
+
+  @override
+  List<Object?> get props => [createResource];
+
+  @override
+  Map<String, dynamic> toJson() => _$CreateResource$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateResources$Mutation$CreateResources$Resource extends JsonSerializable
+    with EquatableMixin {
+  CreateResources$Mutation$CreateResources$Resource();
+
+  factory CreateResources$Mutation$CreateResources$Resource.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateResources$Mutation$CreateResources$ResourceFromJson(json);
+
+  int? id;
+
+  @override
+  List<Object?> get props => [id];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CreateResources$Mutation$CreateResources$ResourceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateResources$Mutation$CreateResources extends JsonSerializable
+    with EquatableMixin {
+  CreateResources$Mutation$CreateResources();
+
+  factory CreateResources$Mutation$CreateResources.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateResources$Mutation$CreateResourcesFromJson(json);
+
+  CreateResources$Mutation$CreateResources$Resource? resource;
+
+  @override
+  List<Object?> get props => [resource];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CreateResources$Mutation$CreateResourcesToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateResources$Mutation extends JsonSerializable with EquatableMixin {
+  CreateResources$Mutation();
+
+  factory CreateResources$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$CreateResources$MutationFromJson(json);
+
+  @JsonKey(name: 'create_resources')
+  CreateResources$Mutation$CreateResources? createResources;
+
+  @override
+  List<Object?> get props => [createResources];
+
+  @override
+  Map<String, dynamic> toJson() => _$CreateResources$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Resources$Query$Resources$Results extends JsonSerializable
+    with EquatableMixin {
+  Resources$Query$Resources$Results();
+
+  factory Resources$Query$Resources$Results.fromJson(
+          Map<String, dynamic> json) =>
+      _$Resources$Query$Resources$ResultsFromJson(json);
+
+  int? id;
+
+  @override
+  List<Object?> get props => [id];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Resources$Query$Resources$ResultsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Resources$Query$Resources extends JsonSerializable with EquatableMixin {
+  Resources$Query$Resources();
+
+  factory Resources$Query$Resources.fromJson(Map<String, dynamic> json) =>
+      _$Resources$Query$ResourcesFromJson(json);
+
+  int? totalCount;
+
+  List<Resources$Query$Resources$Results?>? results;
+
+  @override
+  List<Object?> get props => [totalCount, results];
+
+  @override
+  Map<String, dynamic> toJson() => _$Resources$Query$ResourcesToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Resources$Query extends JsonSerializable with EquatableMixin {
+  Resources$Query();
+
+  factory Resources$Query.fromJson(Map<String, dynamic> json) =>
+      _$Resources$QueryFromJson(json);
+
+  Resources$Query$Resources? resources;
+
+  @override
+  List<Object?> get props => [resources];
+
+  @override
+  Map<String, dynamic> toJson() => _$Resources$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Resource$Query$Resource extends JsonSerializable with EquatableMixin {
+  Resource$Query$Resource();
+
+  factory Resource$Query$Resource.fromJson(Map<String, dynamic> json) =>
+      _$Resource$Query$ResourceFromJson(json);
+
+  int? id;
+
+  @JsonKey(name: 'resource_id')
+  int? resourceId;
+
+  @JsonKey(name: 'resource_name')
+  String? resourceName;
+
+  String? type;
+
+  String? image;
+
+  @JsonKey(name: 'image_thumb')
+  String? imageThumb;
+
+  @override
+  List<Object?> get props =>
+      [id, resourceId, resourceName, type, image, imageThumb];
+
+  @override
+  Map<String, dynamic> toJson() => _$Resource$Query$ResourceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Resource$Query extends JsonSerializable with EquatableMixin {
+  Resource$Query();
+
+  factory Resource$Query.fromJson(Map<String, dynamic> json) =>
+      _$Resource$QueryFromJson(json);
+
+  Resource$Query$Resource? resource;
+
+  @override
+  List<Object?> get props => [resource];
+
+  @override
+  Map<String, dynamic> toJson() => _$Resource$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateModel$Mutation$CreateObjectModel$Objectmodel
+    extends JsonSerializable with EquatableMixin {
+  CreateModel$Mutation$CreateObjectModel$Objectmodel();
+
+  factory CreateModel$Mutation$CreateObjectModel$Objectmodel.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateModel$Mutation$CreateObjectModel$ObjectmodelFromJson(json);
+
+  int? id;
+
+  @override
+  List<Object?> get props => [id];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CreateModel$Mutation$CreateObjectModel$ObjectmodelToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateModel$Mutation$CreateObjectModel extends JsonSerializable
+    with EquatableMixin {
+  CreateModel$Mutation$CreateObjectModel();
+
+  factory CreateModel$Mutation$CreateObjectModel.fromJson(
+          Map<String, dynamic> json) =>
+      _$CreateModel$Mutation$CreateObjectModelFromJson(json);
+
+  CreateModel$Mutation$CreateObjectModel$Objectmodel? objectmodel;
+
+  @override
+  List<Object?> get props => [objectmodel];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CreateModel$Mutation$CreateObjectModelToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateModel$Mutation extends JsonSerializable with EquatableMixin {
+  CreateModel$Mutation();
+
+  factory CreateModel$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$CreateModel$MutationFromJson(json);
+
+  @JsonKey(name: 'create_object_model')
+  CreateModel$Mutation$CreateObjectModel? createObjectModel;
+
+  @override
+  List<Object?> get props => [createObjectModel];
+
+  @override
+  Map<String, dynamic> toJson() => _$CreateModel$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Model$Query$Objectmodel$Venue extends JsonSerializable
+    with EquatableMixin {
+  Model$Query$Objectmodel$Venue();
+
+  factory Model$Query$Objectmodel$Venue.fromJson(Map<String, dynamic> json) =>
+      _$Model$Query$Objectmodel$VenueFromJson(json);
+
+  int? id;
+
+  String? name;
+
+  @override
+  List<Object?> get props => [id, name];
+
+  @override
+  Map<String, dynamic> toJson() => _$Model$Query$Objectmodel$VenueToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Model$Query$Objectmodel extends JsonSerializable with EquatableMixin {
+  Model$Query$Objectmodel();
+
+  factory Model$Query$Objectmodel.fromJson(Map<String, dynamic> json) =>
+      _$Model$Query$ObjectmodelFromJson(json);
+
+  int? id;
+
+  String? name;
+
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+
+  Model$Query$Objectmodel$Venue? venue;
+
+  String? file;
+
+  @override
+  List<Object?> get props => [id, name, createdAt, venue, file];
+
+  @override
+  Map<String, dynamic> toJson() => _$Model$Query$ObjectmodelToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Model$Query extends JsonSerializable with EquatableMixin {
+  Model$Query();
+
+  factory Model$Query.fromJson(Map<String, dynamic> json) =>
+      _$Model$QueryFromJson(json);
+
+  Model$Query$Objectmodel? objectmodel;
+
+  @override
+  List<Object?> get props => [objectmodel];
+
+  @override
+  Map<String, dynamic> toJson() => _$Model$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Models$Query$Objectmodels$Results$Venue extends JsonSerializable
+    with EquatableMixin {
+  Models$Query$Objectmodels$Results$Venue();
+
+  factory Models$Query$Objectmodels$Results$Venue.fromJson(
+          Map<String, dynamic> json) =>
+      _$Models$Query$Objectmodels$Results$VenueFromJson(json);
+
+  int? id;
+
+  String? name;
+
+  @override
+  List<Object?> get props => [id, name];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Models$Query$Objectmodels$Results$VenueToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Models$Query$Objectmodels$Results extends JsonSerializable
+    with EquatableMixin {
+  Models$Query$Objectmodels$Results();
+
+  factory Models$Query$Objectmodels$Results.fromJson(
+          Map<String, dynamic> json) =>
+      _$Models$Query$Objectmodels$ResultsFromJson(json);
+
+  int? id;
+
+  String? name;
+
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+
+  Models$Query$Objectmodels$Results$Venue? venue;
+
+  String? file;
+
+  @override
+  List<Object?> get props => [id, name, createdAt, venue, file];
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Models$Query$Objectmodels$ResultsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Models$Query$Objectmodels extends JsonSerializable with EquatableMixin {
+  Models$Query$Objectmodels();
+
+  factory Models$Query$Objectmodels.fromJson(Map<String, dynamic> json) =>
+      _$Models$Query$ObjectmodelsFromJson(json);
+
+  List<Models$Query$Objectmodels$Results?>? results;
+
+  @override
+  List<Object?> get props => [results];
+
+  @override
+  Map<String, dynamic> toJson() => _$Models$Query$ObjectmodelsToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Models$Query extends JsonSerializable with EquatableMixin {
+  Models$Query();
+
+  factory Models$Query.fromJson(Map<String, dynamic> json) =>
+      _$Models$QueryFromJson(json);
+
+  Models$Query$Objectmodels? objectmodels;
+
+  @override
+  List<Object?> get props => [objectmodels];
+
+  @override
+  Map<String, dynamic> toJson() => _$Models$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class VerifyAccountArguments extends JsonSerializable with EquatableMixin {
   VerifyAccountArguments({
     required this.token,
@@ -952,7 +1357,6 @@ class ProductsArguments extends JsonSerializable with EquatableMixin {
     this.limit,
     this.offset,
     this.search,
-    this.venue_id,
     this.is_active,
   });
 
@@ -966,12 +1370,10 @@ class ProductsArguments extends JsonSerializable with EquatableMixin {
 
   final String? search;
 
-  final double? venue_id;
-
   final bool? is_active;
 
   @override
-  List<Object?> get props => [limit, offset, search, venue_id, is_active];
+  List<Object?> get props => [limit, offset, search, is_active];
 
   @override
   Map<String, dynamic> toJson() => _$ProductsArgumentsToJson(this);
@@ -1011,15 +1413,6 @@ final PRODUCTS_QUERY_DOCUMENT = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'venue_id')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Float'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'is_active')),
         type: NamedTypeNode(
           name: NameNode(value: 'Boolean'),
@@ -1038,10 +1431,6 @@ final PRODUCTS_QUERY_DOCUMENT = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'search'),
             value: VariableNode(name: NameNode(value: 'search')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'venue_id'),
-            value: VariableNode(name: NameNode(value: 'venue_id')),
           ),
           ArgumentNode(
             name: NameNode(value: 'ordering'),
@@ -1354,6 +1743,7 @@ class CreateProductArguments extends JsonSerializable with EquatableMixin {
     required this.name,
     required this.price_unit,
     this.code,
+    required this.venue_id,
   });
 
   @override
@@ -1368,8 +1758,10 @@ class CreateProductArguments extends JsonSerializable with EquatableMixin {
 
   final String? code;
 
+  late int venue_id;
+
   @override
-  List<Object?> get props => [description, name, price_unit, code];
+  List<Object?> get props => [description, name, price_unit, code, venue_id];
 
   @override
   Map<String, dynamic> toJson() => _$CreateProductArgumentsToJson(this);
@@ -1417,6 +1809,15 @@ final CREATE_PRODUCT_MUTATION_DOCUMENT = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'venue_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -1439,6 +1840,10 @@ final CREATE_PRODUCT_MUTATION_DOCUMENT = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'description'),
             value: VariableNode(name: NameNode(value: 'description')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'venue_id'),
+            value: VariableNode(name: NameNode(value: 'venue_id')),
           ),
         ],
         directives: [],
@@ -1642,7 +2047,6 @@ class UpdateProductMutation
 @JsonSerializable(explicitToJson: true)
 class ProfilesArguments extends JsonSerializable with EquatableMixin {
   ProfilesArguments({
-    this.id,
     required this.ordering,
     required this.search,
     this.limit,
@@ -1653,8 +2057,6 @@ class ProfilesArguments extends JsonSerializable with EquatableMixin {
   factory ProfilesArguments.fromJson(Map<String, dynamic> json) =>
       _$ProfilesArgumentsFromJson(json);
 
-  final double? id;
-
   late String ordering;
 
   late String search;
@@ -1664,7 +2066,7 @@ class ProfilesArguments extends JsonSerializable with EquatableMixin {
   final int? offset;
 
   @override
-  List<Object?> get props => [id, ordering, search, limit, offset];
+  List<Object?> get props => [ordering, search, limit, offset];
 
   @override
   Map<String, dynamic> toJson() => _$ProfilesArgumentsToJson(this);
@@ -1676,15 +2078,6 @@ final PROFILES_QUERY_DOCUMENT = DocumentNode(definitions: [
     type: OperationType.query,
     name: NameNode(value: 'Profiles'),
     variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'id')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Float'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'ordering')),
         type: NamedTypeNode(
@@ -1728,10 +2121,6 @@ final PROFILES_QUERY_DOCUMENT = DocumentNode(definitions: [
         name: NameNode(value: 'profiles'),
         alias: null,
         arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'id'),
-            value: VariableNode(name: NameNode(value: 'id')),
-          ),
           ArgumentNode(
             name: NameNode(value: 'ordering'),
             value: VariableNode(name: NameNode(value: 'ordering')),
@@ -2408,4 +2797,922 @@ class UpdateProfileMutation
   @override
   UpdateProfile$Mutation parse(Map<String, dynamic> json) =>
       UpdateProfile$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateResourceArguments extends JsonSerializable with EquatableMixin {
+  CreateResourceArguments({
+    required this.file,
+    required this.coordinates,
+    required this.resource_name,
+    required this.resource_ext,
+    required this.resource_id,
+  });
+
+  @override
+  factory CreateResourceArguments.fromJson(Map<String, dynamic> json) =>
+      _$CreateResourceArgumentsFromJson(json);
+
+  late Object file;
+
+  late List<String?> coordinates;
+
+  late String resource_name;
+
+  late String resource_ext;
+
+  late int resource_id;
+
+  @override
+  List<Object?> get props =>
+      [file, coordinates, resource_name, resource_ext, resource_id];
+
+  @override
+  Map<String, dynamic> toJson() => _$CreateResourceArgumentsToJson(this);
+}
+
+final CREATE_RESOURCE_MUTATION_DOCUMENT_OPERATION_NAME = 'CreateResource';
+final CREATE_RESOURCE_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CreateResource'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'file')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Upload'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'coordinates')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'resource_name')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'resource_ext')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'resource_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'create_resource'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'file'),
+            value: VariableNode(name: NameNode(value: 'file')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'coordinates'),
+            value: VariableNode(name: NameNode(value: 'coordinates')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'resource_name'),
+            value: VariableNode(name: NameNode(value: 'resource_name')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'resource_ext'),
+            value: VariableNode(name: NameNode(value: 'resource_ext')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'resource_id'),
+            value: VariableNode(name: NameNode(value: 'resource_id')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'resource'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              )
+            ]),
+          )
+        ]),
+      )
+    ]),
+  )
+]);
+
+class CreateResourceMutation
+    extends GraphQLQuery<CreateResource$Mutation, CreateResourceArguments> {
+  CreateResourceMutation({required this.variables});
+
+  @override
+  final DocumentNode document = CREATE_RESOURCE_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = CREATE_RESOURCE_MUTATION_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final CreateResourceArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+
+  @override
+  CreateResource$Mutation parse(Map<String, dynamic> json) =>
+      CreateResource$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateResourcesArguments extends JsonSerializable with EquatableMixin {
+  CreateResourcesArguments({
+    required this.file,
+    required this.resource_name,
+    required this.resource_ext,
+    required this.resource_id,
+  });
+
+  @override
+  factory CreateResourcesArguments.fromJson(Map<String, dynamic> json) =>
+      _$CreateResourcesArgumentsFromJson(json);
+
+  late List<Object?> file;
+
+  late String resource_name;
+
+  late String resource_ext;
+
+  late int resource_id;
+
+  @override
+  List<Object?> get props => [file, resource_name, resource_ext, resource_id];
+
+  @override
+  Map<String, dynamic> toJson() => _$CreateResourcesArgumentsToJson(this);
+}
+
+final CREATE_RESOURCES_MUTATION_DOCUMENT_OPERATION_NAME = 'CreateResources';
+final CREATE_RESOURCES_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CreateResources'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'file')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'Upload'),
+            isNonNull: false,
+          ),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'resource_name')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'resource_ext')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'resource_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'create_resources'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'files'),
+            value: VariableNode(name: NameNode(value: 'file')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'resource_name'),
+            value: VariableNode(name: NameNode(value: 'resource_name')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'resource_ext'),
+            value: VariableNode(name: NameNode(value: 'resource_ext')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'resource_id'),
+            value: VariableNode(name: NameNode(value: 'resource_id')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'resource'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              )
+            ]),
+          )
+        ]),
+      )
+    ]),
+  )
+]);
+
+class CreateResourcesMutation
+    extends GraphQLQuery<CreateResources$Mutation, CreateResourcesArguments> {
+  CreateResourcesMutation({required this.variables});
+
+  @override
+  final DocumentNode document = CREATE_RESOURCES_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName =
+      CREATE_RESOURCES_MUTATION_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final CreateResourcesArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+
+  @override
+  CreateResources$Mutation parse(Map<String, dynamic> json) =>
+      CreateResources$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ResourcesArguments extends JsonSerializable with EquatableMixin {
+  ResourcesArguments({
+    this.limit,
+    this.offset,
+    this.search,
+  });
+
+  @override
+  factory ResourcesArguments.fromJson(Map<String, dynamic> json) =>
+      _$ResourcesArgumentsFromJson(json);
+
+  final int? limit;
+
+  final int? offset;
+
+  final String? search;
+
+  @override
+  List<Object?> get props => [limit, offset, search];
+
+  @override
+  Map<String, dynamic> toJson() => _$ResourcesArgumentsToJson(this);
+}
+
+final RESOURCES_QUERY_DOCUMENT_OPERATION_NAME = 'Resources';
+final RESOURCES_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Resources'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'limit')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'offset')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'search')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'resources'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'search'),
+            value: VariableNode(name: NameNode(value: 'search')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'totalCount'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'results'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: VariableNode(name: NameNode(value: 'limit')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'offset'),
+                value: VariableNode(name: NameNode(value: 'offset')),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              )
+            ]),
+          ),
+        ]),
+      )
+    ]),
+  )
+]);
+
+class ResourcesQuery extends GraphQLQuery<Resources$Query, ResourcesArguments> {
+  ResourcesQuery({required this.variables});
+
+  @override
+  final DocumentNode document = RESOURCES_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = RESOURCES_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final ResourcesArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+
+  @override
+  Resources$Query parse(Map<String, dynamic> json) =>
+      Resources$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ResourceArguments extends JsonSerializable with EquatableMixin {
+  ResourceArguments({required this.id});
+
+  @override
+  factory ResourceArguments.fromJson(Map<String, dynamic> json) =>
+      _$ResourceArgumentsFromJson(json);
+
+  late int id;
+
+  @override
+  List<Object?> get props => [id];
+
+  @override
+  Map<String, dynamic> toJson() => _$ResourceArgumentsToJson(this);
+}
+
+final RESOURCE_QUERY_DOCUMENT_OPERATION_NAME = 'Resource';
+final RESOURCE_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Resource'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'resource'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'id')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'resource_id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'resource_name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'type'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'image'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'image_thumb'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      )
+    ]),
+  )
+]);
+
+class ResourceQuery extends GraphQLQuery<Resource$Query, ResourceArguments> {
+  ResourceQuery({required this.variables});
+
+  @override
+  final DocumentNode document = RESOURCE_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = RESOURCE_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final ResourceArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+
+  @override
+  Resource$Query parse(Map<String, dynamic> json) =>
+      Resource$Query.fromJson(json);
+}
+
+final CREATE_MODEL_MUTATION_DOCUMENT_OPERATION_NAME = 'CreateModel';
+final CREATE_MODEL_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CreateModel'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'create_object_model'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'venue_id'),
+            value: IntValueNode(value: '1'),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'objectmodel'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              )
+            ]),
+          )
+        ]),
+      )
+    ]),
+  )
+]);
+
+class CreateModelMutation
+    extends GraphQLQuery<CreateModel$Mutation, JsonSerializable> {
+  CreateModelMutation();
+
+  @override
+  final DocumentNode document = CREATE_MODEL_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = CREATE_MODEL_MUTATION_DOCUMENT_OPERATION_NAME;
+
+  @override
+  List<Object?> get props => [document, operationName];
+
+  @override
+  CreateModel$Mutation parse(Map<String, dynamic> json) =>
+      CreateModel$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ModelArguments extends JsonSerializable with EquatableMixin {
+  ModelArguments({required this.id});
+
+  @override
+  factory ModelArguments.fromJson(Map<String, dynamic> json) =>
+      _$ModelArgumentsFromJson(json);
+
+  late int id;
+
+  @override
+  List<Object?> get props => [id];
+
+  @override
+  Map<String, dynamic> toJson() => _$ModelArgumentsToJson(this);
+}
+
+final MODEL_QUERY_DOCUMENT_OPERATION_NAME = 'Model';
+final MODEL_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Model'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'objectmodel'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'id')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'created_at'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'venue'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'file'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      )
+    ]),
+  )
+]);
+
+class ModelQuery extends GraphQLQuery<Model$Query, ModelArguments> {
+  ModelQuery({required this.variables});
+
+  @override
+  final DocumentNode document = MODEL_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = MODEL_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final ModelArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+
+  @override
+  Model$Query parse(Map<String, dynamic> json) => Model$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ModelsArguments extends JsonSerializable with EquatableMixin {
+  ModelsArguments({
+    this.ordering,
+    this.search,
+    this.limit,
+    this.offset,
+    this.venue_id,
+  });
+
+  @override
+  factory ModelsArguments.fromJson(Map<String, dynamic> json) =>
+      _$ModelsArgumentsFromJson(json);
+
+  final String? ordering;
+
+  final String? search;
+
+  final int? limit;
+
+  final int? offset;
+
+  final double? venue_id;
+
+  @override
+  List<Object?> get props => [ordering, search, limit, offset, venue_id];
+
+  @override
+  Map<String, dynamic> toJson() => _$ModelsArgumentsToJson(this);
+}
+
+final MODELS_QUERY_DOCUMENT_OPERATION_NAME = 'Models';
+final MODELS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Models'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'ordering')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'search')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'limit')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'offset')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'venue_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Decimal'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'objectmodels'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'ordering'),
+            value: VariableNode(name: NameNode(value: 'ordering')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'search'),
+            value: VariableNode(name: NameNode(value: 'search')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'venue_id'),
+            value: VariableNode(name: NameNode(value: 'venue_id')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'results'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: VariableNode(name: NameNode(value: 'limit')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'offset'),
+                value: VariableNode(name: NameNode(value: 'offset')),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'created_at'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'venue'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'file'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          )
+        ]),
+      )
+    ]),
+  )
+]);
+
+class ModelsQuery extends GraphQLQuery<Models$Query, ModelsArguments> {
+  ModelsQuery({required this.variables});
+
+  @override
+  final DocumentNode document = MODELS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = MODELS_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final ModelsArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+
+  @override
+  Models$Query parse(Map<String, dynamic> json) => Models$Query.fromJson(json);
 }

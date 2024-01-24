@@ -182,8 +182,42 @@ type ClientType {
     register_at: CustomDateTime
 }
 
+type CompanyListType {
+    "Company list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [CompanyType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type CompanyType {
+    "Descripción"
+    description: String
+    id: Int
+    "Nombre"
+    name: String
+    "Fecha de registro"
+    register_at: CustomDate
+    venue: [VenueType!]
+    venues: [VenueType]
+}
+
+type CreateCompany {
+    company: CompanyType
+}
+
 type CreateGroup {
     group: GroupType
+}
+
+type CreateObjectModel {
+    objectmodel: ObjectModelType
 }
 
 type CreateProduct {
@@ -198,12 +232,28 @@ type CreateResource {
     resource: ResourceType
 }
 
+type CreateResources {
+    resource: ResourceType
+}
+
 type CreateUser {
     user: UserType
 }
 
 type CreateUserWithProfile {
     user: UserType
+}
+
+type CreateVendor {
+    vendor: VendorType
+}
+
+type CreateVenue {
+    venue: VenueType
+}
+
+type DeleteCompany {
+    company: CompanyType
 }
 
 type DeleteProduct {
@@ -216,6 +266,42 @@ type DeleteProfile {
 
 type DeleteResource {
     resource: ResourceType
+}
+
+type DeleteVenue {
+    venue: VenueType
+}
+
+type DetectedObjectListType {
+    "DetectedObject list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [DetectedObjectType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type DetectedObjectType {
+    "Fecha de registro"
+    created_at: CustomDateTime
+    id: Int
+    "Nombre"
+    name: String
+    "Porcentaje"
+    percent: Float
+    "X1"
+    x1: Int
+    "X2"
+    x2: Int
+    "Y1"
+    y1: Int
+    "Y2"
+    y2: Int
 }
 
 type GroupListType {
@@ -242,22 +328,58 @@ type GroupType {
 }
 
 type Mutation {
+    create_company(description: String, name: String!): CreateCompany
     create_group(name: String!, permissions: GenericScalar): CreateGroup
-    create_product(code: String, description: String, is_control_by_date_expired: Boolean, is_on_sale: Boolean, name: String!, price_unit: Float!, price_unit_purchase: Float): CreateProduct
+    create_object_model(venue_id: ID!): CreateObjectModel
+    create_product(code: String, description: String, is_control_by_date_expired: Boolean, is_on_sale: Boolean, name: String!, price_unit: Float!, price_unit_purchase: Float, venue_id: ID!): CreateProduct
     create_profile(ci: Int, first_name: String!, gender: String!, home_address: String, last_name: String!, middle_name: String!, mobile_phone: Int, role: String!): CreateProfile
-    create_resource(file: String!, resource_id: ID!, resource_name: String!, venue_id: Int!): CreateResource
+    create_resource(coordinates: [String]!, file: Upload!, resource_ext: String!, resource_id: ID!, resource_name: String!): CreateResource
+    create_resources(files: [Upload], resource_ext: String!, resource_id: ID!, resource_name: String!): CreateResources
     create_user(groups: GenericScalar, password: String!, profile_id: ID!, username: String!): CreateUser
     create_user_with_profile(first_name: String!, last_name: String!, mobile_phone: Int!, password: String!, role: String!, username: String!): CreateUserWithProfile
+    create_vendor(address: String, description: String, is_active: Boolean, name: String!, phone: Int, venue_id: ID!): CreateVendor
+    create_venue(address: String, company_id: ID!, description: String, dosage_key: String, is_active: Boolean, logo: String, name: String!, nit: Int, nro_authorization: String, phone: Int): CreateVenue
+    delete_company(id: ID!): DeleteCompany
     delete_product(id: ID!): DeleteProduct
     delete_profile(id: ID!): DeleteProfile
     delete_resource(id: ID!): DeleteResource
+    delete_venue(id: ID!): DeleteVenue
     token_auth(password: String!, username: String!): TokenAuth
+    update_company(description: String, id: ID!, name: String): UpdateCompany
     update_group(id: ID!, name: String, permissions: GenericScalar): UpdateGroup
     update_product(code: String, description: String, id: ID!, is_active: Boolean, is_control_by_date_expired: Boolean, is_on_sale: Boolean, is_sold_out: Boolean, name: String, price_unit: Float, price_unit_purchase: Float): UpdateProduct
     update_profile(ci: Int, first_name: String, gender: String, home_address: String, id: ID!, last_name: String, middle_name: String, mobile_phone: Int, nit_billing: String, social_reason: String): UpdateProfile
-    update_resource(file: String!, id: ID!): UpdateResource
+    update_resource(coordinates: [String]!, file: Upload!, id: ID!): UpdateResource
     update_user(groups: GenericScalar, id: ID!, is_active: Boolean, password: String): UpdateUser
+    update_vendor(address: String, description: String, id: ID!, is_active: Boolean, name: String, phone: Int, venue_id: ID!): UpdateVendor
+    update_venue(address: String, company_id: ID, description: String, dosage_key: String, id: ID!, is_active: Boolean, logo: String, name: String, nit: Int, nro_authorization: String, phone: Int): UpdateVenue
     verify_account(platform: String!, token: String!): VerifyAccount
+}
+
+type ObjectModelListType {
+    "ObjectModel list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [ObjectModelType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type ObjectModelType {
+    "Fecha de registro"
+    created_at: CustomDateTime
+    "Archivo"
+    file: String
+    id: Int
+    "Nombre"
+    name: String
+    "Empresa"
+    venue: VenueType
 }
 
 type PermissionListType {
@@ -324,6 +446,8 @@ type ProductType {
     quantity_available: Int
     "Fecha de registro"
     register_at: CustomDate
+    "Empresa"
+    venue: VenueType
 }
 
 type ProfileListType {
@@ -365,58 +489,88 @@ type Query {
         id: ID!
     ): ClientType
     "Client list"
-    clients(id: Float, ordering: String, search: String): ClientListType
+    clients(id: Int, ordering: String, search: String): ClientListType
+    "Company list"
+    companies(id: Int, name: String, ordering: String, search: String): CompanyListType
+    company(
+        "Django object unique identification field"
+        id: ID!
+    ): CompanyType
+    detectedobject(
+        "Django object unique identification field"
+        id: ID!
+    ): DetectedObjectType
+    "DetectedObject list"
+    detectedobjects(id: Int, ordering: String, search: String): DetectedObjectListType
     group(
         "Django object unique identification field"
         id: ID!
     ): GroupType
     "Group list"
-    groups(id: Float, ordering: String, search: String): GroupListType
+    groups(id: Int, ordering: String, search: String): GroupListType
+    objectmodel(
+        "Django object unique identification field"
+        id: ID!
+    ): ObjectModelType
+    "ObjectModel list"
+    objectmodels(id: Int, ordering: String, search: String, venue_id: Decimal): ObjectModelListType
     permission(
         "Django object unique identification field"
         id: ID!
     ): PermissionType
     "Permission list"
-    permissions(id: Float, ordering: String, search: String): PermissionListType
+    permissions(id: Int, ordering: String, search: String): PermissionListType
     product(
         "Django object unique identification field"
         id: ID!
     ): ProductType
     "Product list"
-    products(assigned_to: String, assigned_to_distributor_id: String, assigned_to_vendor_id: String, assigned_to_warehouse_id: String, category_id: Float, id: Float, is_active: Boolean, is_on_sale: Boolean, ordering: String, search: String, unassigned_to_distributor_id: String, unassigned_to_vendor_id: String, unassigned_to_warehouse_id: String, venue_id: Float): ProductListType
+    products(id: Int, is_active: Boolean, is_on_sale: Boolean, ordering: String, search: String, venue_id: Decimal): ProductListType
     profile(
         "Django object unique identification field"
         id: ID!
     ): ProfileType
     "Profile list"
-    profiles(id: Float, ordering: String, role: String, search: String, user__name: String): ProfileListType
+    profiles(id: Int, ordering: String, role: String, search: String, user__name: String): ProfileListType
     resource(
         "Django object unique identification field"
         id: ID!
     ): ResourceType
     "Resource list"
-    resources(id: Float, ordering: String, resource_id: Float, resource_name: String, search: String): ResourceListType
+    resources(id: Int, ordering: String, resource_id: Decimal, resource_name: String, search: String): ResourceListType
     user(
         "Django object unique identification field"
         id: ID!
     ): UserType
     "User list"
     users(
-        date_joined: DateTime,
+        date_joined: CustomDateTime,
         email: String,
         first_name: String,
-        groups: [ID],
+        groups: Int,
         "Django object unique identification field"
         id: ID,
         is_active: Boolean,
         is_staff: Boolean,
         is_superuser: Boolean,
-        last_login: DateTime,
+        last_login: CustomDateTime,
         last_name: String,
         password: String,
-        user_permissions: [ID],
+        user_permissions: Int,
         username: String
     ): UserListType
+    vendor(
+        "Django object unique identification field"
+        id: ID!
+    ): VendorType
+    "Vendor list"
+    vendors(id: Int, name: String, ordering: String, search: String, venue_id: Decimal): VendorListType
+    venue(
+        "Django object unique identification field"
+        id: ID!
+    ): VenueType
+    "Venue list"
+    venues(company_id: Decimal, id: Int, name: String, ordering: String, search: String): VenueListType
 }
 
 type ResourceListType {
@@ -445,12 +599,24 @@ type ResourceType {
     resource_name: String
     "Tipo"
     type: String
+    "X1"
+    x1: Int
+    "X2"
+    x2: Int
+    "Y1"
+    y1: Int
+    "Y2"
+    y2: Int
 }
 
 type TokenAuth {
     message: String
     profile: ProfileType
     token: String
+}
+
+type UpdateCompany {
+    company: CompanyType
 }
 
 type UpdateGroup {
@@ -471,6 +637,14 @@ type UpdateResource {
 
 type UpdateUser {
     user: UserType
+}
+
+type UpdateVendor {
+    vendor: VendorType
+}
+
+type UpdateVenue {
+    venue: VenueType
 }
 
 type UserListType {
@@ -516,6 +690,74 @@ type UserType {
     username: String
 }
 
+type VendorListType {
+    "Vendor list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [VendorType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type VendorType {
+    "Dirección"
+    address: String
+    "Descripción"
+    description: String
+    id: Int
+    is_active: Boolean
+    "Nombre"
+    name: String
+    "teléfono"
+    phone: Int
+    "venue"
+    venue: VenueType
+}
+
+type VenueListType {
+    "Venue list, paginated by LimitOffsetPaginator"
+    results(
+        "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+        limit: Int = 25,
+        "The initial index from which to return the results. Default: 0"
+        offset: Int,
+        "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+        ordering: String
+    ): [VenueType]
+    "Total count of matches elements"
+    totalCount: Int
+}
+
+type VenueType {
+    "Dirección"
+    address: String
+    "company"
+    company: CompanyType
+    "Descripción"
+    description: String
+    "Llave de dosificación"
+    dosage_key: String
+    id: Int
+    is_active: Boolean
+    is_track_inventory: Boolean
+    logo: String
+    "Nombre"
+    name: String
+    nit: BigInt
+    "Nro de Authorization"
+    nro_authorization: String
+    objectmodels: [ObjectModelType!]
+    "teléfono"
+    phone: Int
+    products: [ProductType!]
+    vendor: [VendorType!]
+}
+
 type VerifyAccount {
     profile: ProfileType
     token: String
@@ -528,13 +770,8 @@ scalar CustomDate
 
 scalar CustomDateTime
 
-"""
-
-The `DateTime` scalar type represents a DateTime
-value as specified by
-[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
-"""
-scalar DateTime
+"The `Decimal` scalar type represents a python Decimal."
+scalar Decimal
 
 """
 
@@ -543,3 +780,10 @@ GraphQL scalar value that could be:
 String, Boolean, Int, Float, List or Object.
 """
 scalar GenericScalar
+
+"""
+
+Create scalar that ignores normal serialization/deserialization, since
+that will be handled by the multipart request spec
+"""
+scalar Upload

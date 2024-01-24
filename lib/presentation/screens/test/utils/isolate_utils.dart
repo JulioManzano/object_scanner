@@ -32,22 +32,20 @@ class IsolateUtils {
     sendPort.send(port.sendPort);
 
     await for (final IsolateData isolateData in port) {
-      if (isolateData != null) {
-        Classifier classifier = Classifier(
-            interpreter:
-                Interpreter.fromAddress(isolateData.interpreterAddress),
-            labels: isolateData.labels);
-        imageLib.Image? image =
-            ImageUtils.convertCameraImage(isolateData.cameraImage);
-        if(image != null ) {
-          if (Platform.isAndroid) {
-            image = imageLib.copyRotate(image, 90);
-          }
-          Map<String, dynamic>? results = classifier.predict(image);
-          isolateData.responsePort?.send(results);
+      Classifier classifier = Classifier(
+          interpreter:
+              Interpreter.fromAddress(isolateData.interpreterAddress),
+          labels: isolateData.labels);
+      imageLib.Image? image =
+          ImageUtils.convertCameraImage(isolateData.cameraImage);
+      if(image != null ) {
+        if (Platform.isAndroid) {
+          image = imageLib.copyRotate(image, 90);
         }
+        Map<String, dynamic>? results = classifier.predict(image);
+        isolateData.responsePort?.send(results);
       }
-    }
+        }
   }
 }
 

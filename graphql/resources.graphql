@@ -1,0 +1,38 @@
+mutation CreateResource($file :Upload!,$coordinates: [String]!, $resource_name: String!,
+    $resource_ext: String!, $resource_id : ID!){
+    create_resource(file: $file, coordinates: $coordinates,resource_name: $resource_name,
+        resource_ext: $resource_ext,resource_id: $resource_id){
+        resource {
+            id
+        }
+    }
+}
+mutation CreateResources($file :[Upload]!, $resource_name: String!,
+    $resource_ext: String!, $resource_id : ID!){
+    create_resources(files: $file, resource_name: $resource_name,
+        resource_ext: $resource_ext,resource_id: $resource_id){
+        resource {
+            id
+        }
+    }
+}
+query Resources($limit: Int, $offset: Int, $search: String){
+    resources(search: $search,
+    ){
+        totalCount
+        results(limit: $limit, offset: $offset){
+            id
+
+        }
+    }
+}
+query Resource($id:  ID!){
+    resource(id: $id){
+        id
+        resource_id
+        resource_name
+        type
+        image
+        image_thumb
+    }
+}

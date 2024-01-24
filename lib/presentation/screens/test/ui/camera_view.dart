@@ -3,6 +3,7 @@ import 'dart:isolate';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:tflite_flutter_helper_plus/tflite_flutter_helper_plus.dart';
 import 'package:tflite_flutter_plus/tflite_flutter_plus.dart';
 
 import '../tflite/classifier.dart';
@@ -31,13 +32,13 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   List<CameraDescription> cameras = [];
 
   /// Controller
-  late CameraController cameraController;
+  CameraController? cameraController;
 
   /// true when inference is ongoing
   late bool predicting;
 
   /// Instance of [Classifier]
-  late Classifier classifier;
+  Classifier? classifier;
 
   /// Instance of [IsolateUtils]
   late IsolateUtils isolateUtils;
@@ -60,7 +61,12 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
     // Create an instance of classifier to load model and labels
     classifier = Classifier(
-        interpreter: Interpreter.fromFile(File("modelFile")), labels: []);
+      interpreter: await Interpreter.fromAsset(
+        "model.tflite",
+        options: InterpreterOptions()..threads = 4,
+      ),
+      labels: await FileUtil.loadLabels("assets/labels.txt"),
+    );
 
     // Initially predicting = false
     predicting = false;
@@ -74,14 +80,14 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
     cameraController =
         CameraController(cameras[0], ResolutionPreset.low, enableAudio: false);
 
-    cameraController.initialize().then((_) async {
+    cameraController!.initialize().then((_) async {
       // Stream of image passed to [onLatestImageAvailable] callback
-      await cameraController.startImageStream(onLatestImageAvailable);
+      await cameraController!.startImageStream(onLatestImageAvailable);
 
       /// previewSize is size of each image frame captured by controller
       ///
       /// 352x288 on iOS, 240p (320x240) on Android with ResolutionPreset.low
-      Size? previewSize = cameraController.value.previewSize;
+      Size? previewSize = cameraController!.value.previewSize;
 
       /// previewSize is size of raw input image to the model
       CameraViewSingleton.inputImageSize = previewSize!;
@@ -92,37 +98,39 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
       CameraViewSingleton.screenSize = screenSize;
       CameraViewSingleton.ratio = screenSize.width / previewSize.height;
     });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     // Return empty container while the camera is not initialized
-    if (cameraController == null || !cameraController.value.isInitialized) {
+    if (cameraController == null || !cameraController!.value.isInitialized) {
       return Container();
     }
 
     return AspectRatio(
-        aspectRatio: cameraController.value.aspectRatio,
-        child: CameraPreview(cameraController));
+        aspectRatio: cameraController!.value.aspectRatio,
+        child: CameraPreview(cameraController!));
   }
 
   /// Callback to receive each frame [CameraImage] perform inference on it
   onLatestImageAvailable(CameraImage cameraImage) async {
-    if (classifier.interpreter != null && classifier.labels != null) {
-      // If previous inference has not completed then return
-      if (predicting) {
-        return;
-      }
+    if (classifier != null &&
+        classifier?.interpreter != null &&
+        classifier?.labels != null) {
+
+      //if (predicting) {
+      //  return;
+      //}
 
       setState(() {
         predicting = true;
       });
-
       var uiThreadTimeStart = DateTime.now().millisecondsSinceEpoch;
 
       // Data to be passed to inference isolate
       var isolateData = IsolateData(
-          cameraImage, classifier.interpreter.address, classifier.labels);
+          cameraImage, classifier!.interpreter!.address, classifier!.labels!);
 
       // We could have simply used the compute method as well however
       // it would be as in-efficient as we need to continuously passing data
@@ -130,13 +138,13 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
       /// perform inference in separate isolate
       Map<String, dynamic> inferenceResults = await inference(isolateData);
+      print("RECOG: $inferenceResults");
 
       var uiThreadInferenceElapsedTime =
           DateTime.now().millisecondsSinceEpoch - uiThreadTimeStart;
 
       // pass results to HomeView
       widget.resultsCallback(inferenceResults["recognitions"]);
-
       // pass stats to HomeView
       widget.statsCallback((inferenceResults["stats"] as Stats)
         ..totalElapsedTime = uiThreadInferenceElapsedTime);
@@ -154,28 +162,31 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
     isolateUtils.sendPort
         .send(isolateData..responsePort = responsePort.sendPort);
     var results = await responsePort.first;
+    print("RESULTS: ${results}");
     return results;
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
-    switch (state) {
-      case AppLifecycleState.paused:
-        cameraController.stopImageStream();
-        break;
-      case AppLifecycleState.resumed:
-        if (!cameraController.value.isStreamingImages) {
-          await cameraController.startImageStream(onLatestImageAvailable);
-        }
-        break;
-      default:
+    if(cameraController!= null) {
+      switch (state) {
+        case AppLifecycleState.paused:
+          cameraController!.stopImageStream();
+          break;
+        case AppLifecycleState.resumed:
+          if (!cameraController!.value.isStreamingImages) {
+            await cameraController!.startImageStream(onLatestImageAvailable);
+          }
+          break;
+        default:
+      }
     }
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    cameraController.dispose();
+    cameraController!.dispose();
     super.dispose();
   }
 }

@@ -22,7 +22,7 @@ class FormProductScreen extends StatelessWidget {
           title: "Nuevo producto",
           centerTitle: true,
         ),
-        body: Center(
+        body: SingleChildScrollView(
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

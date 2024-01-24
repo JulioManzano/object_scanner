@@ -1,0 +1,35 @@
+mutation CreateModel{
+    create_object_model(venue_id: 1) {
+        objectmodel {
+            id
+        }
+    }
+}
+
+query Model($id:  ID!){
+    objectmodel(id: $id){
+        id
+        name
+        created_at
+        venue {
+            id
+            name
+        }
+        file
+    }
+}
+
+query Models($ordering: String,  $search: String, $limit: Int, $offset: Int, $venue_id : Decimal){
+    objectmodels(ordering: $ordering, search: $search, venue_id: $venue_id){
+        results(limit: $limit, offset: $offset){
+            id
+            name
+            created_at
+            venue {
+                id
+                name
+            }
+            file
+        }
+    }
+}

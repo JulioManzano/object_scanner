@@ -1,4 +1,2 @@
-0 Credit Card
-1 Lapiz Rojo
-2 Capuchon
-3 Sin Nada
+0 Capuchon
+1 Credit card

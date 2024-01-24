@@ -1,5 +1,5 @@
-query Profiles($id: Float, $ordering: String!,  $search: String!, $limit: Int, $offset: Int,){
-    profiles(id: $id, ordering: $ordering, search: $search){
+query Profiles($ordering: String!,  $search: String!, $limit: Int, $offset: Int,){
+    profiles(ordering: $ordering, search: $search){
         results(limit: $limit, offset: $offset){
             id
             first_name

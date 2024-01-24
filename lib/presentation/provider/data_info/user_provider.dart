@@ -5,11 +5,11 @@ import 'package:untitled/models/api.graphql.dart';
 class UserProvider extends ChangeNotifier {
   User? userProfile;
   UserProvider(){
-    userProfile = User(
-      id: 1,
-      name: "Julio",
-      role: "admin",
-    );
+    //userProfile = User(
+    //  id: 1,
+    //  name: "Julio",
+    //  role: "ADM",// "ADM" , "SCANNER"
+    //);
   }
   User get user => userProfile!;
 

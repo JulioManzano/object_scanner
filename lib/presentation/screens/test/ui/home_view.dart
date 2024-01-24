@@ -18,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
   List<Recognition> results = [];
 
   /// Realtime stats
-  late Stats stats;
+  Stats? stats;
 
   /// Scaffold Key
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.keyboard_arrow_up,
+                        const Icon(Icons.keyboard_arrow_up,
                             size: 48, color: Colors.orange),
                         (stats != null)
                             ? Padding(
@@ -79,11 +79,11 @@ class _HomeViewState extends State<HomeView> {
                                 child: Column(
                                   children: [
                                     StatsRow('Inference time:',
-                                        '${stats.inferenceTime} ms'),
+                                        '${stats!.inferenceTime} ms'),
                                     StatsRow('Total prediction time:',
-                                        '${stats.totalElapsedTime} ms'),
+                                        '${stats!.totalElapsedTime} ms'),
                                     StatsRow('Pre-processing time:',
-                                        '${stats.preProcessingTime} ms'),
+                                        '${stats!.preProcessingTime} ms'),
                                     StatsRow('Frame',
                                         '${CameraViewSingleton.inputImageSize?.width} X ${CameraViewSingleton.inputImageSize?.height}'),
                                   ],
