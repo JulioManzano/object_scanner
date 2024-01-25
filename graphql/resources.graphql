@@ -11,7 +11,7 @@ mutation CreateResources($file :[Upload]!, $resource_name: String!,
     $resource_ext: String!, $resource_id : ID!){
     create_resources(files: $file, resource_name: $resource_name,
         resource_ext: $resource_ext,resource_id: $resource_id){
-        resource {
+        resources {
             id
         }
     }

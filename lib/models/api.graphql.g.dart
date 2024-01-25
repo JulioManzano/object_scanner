@@ -517,14 +517,14 @@ Map<String, dynamic> _$CreateResource$MutationToJson(
       'create_resource': instance.createResource?.toJson(),
     };
 
-CreateResources$Mutation$CreateResources$Resource
-    _$CreateResources$Mutation$CreateResources$ResourceFromJson(
+CreateResources$Mutation$CreateResources$Resources
+    _$CreateResources$Mutation$CreateResources$ResourcesFromJson(
             Map<String, dynamic> json) =>
-        CreateResources$Mutation$CreateResources$Resource()
+        CreateResources$Mutation$CreateResources$Resources()
           ..id = json['id'] as int?;
 
-Map<String, dynamic> _$CreateResources$Mutation$CreateResources$ResourceToJson(
-        CreateResources$Mutation$CreateResources$Resource instance) =>
+Map<String, dynamic> _$CreateResources$Mutation$CreateResources$ResourcesToJson(
+        CreateResources$Mutation$CreateResources$Resources instance) =>
     <String, dynamic>{
       'id': instance.id,
     };
@@ -533,15 +533,17 @@ CreateResources$Mutation$CreateResources
     _$CreateResources$Mutation$CreateResourcesFromJson(
             Map<String, dynamic> json) =>
         CreateResources$Mutation$CreateResources()
-          ..resource = json['resource'] == null
-              ? null
-              : CreateResources$Mutation$CreateResources$Resource.fromJson(
-                  json['resource'] as Map<String, dynamic>);
+          ..resources = (json['resources'] as List<dynamic>?)
+              ?.map((e) => e == null
+                  ? null
+                  : CreateResources$Mutation$CreateResources$Resources.fromJson(
+                      e as Map<String, dynamic>))
+              .toList();
 
 Map<String, dynamic> _$CreateResources$Mutation$CreateResourcesToJson(
         CreateResources$Mutation$CreateResources instance) =>
     <String, dynamic>{
-      'resource': instance.resource?.toJson(),
+      'resources': instance.resources?.map((e) => e?.toJson()).toList(),
     };
 
 CreateResources$Mutation _$CreateResources$MutationFromJson(
@@ -693,6 +695,9 @@ Model$Query$Objectmodel _$Model$Query$ObjectmodelFromJson(
       ..createdAt = json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String)
+      ..updatedAt = json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String)
       ..venue = json['venue'] == null
           ? null
           : Model$Query$Objectmodel$Venue.fromJson(
@@ -705,6 +710,7 @@ Map<String, dynamic> _$Model$Query$ObjectmodelToJson(
       'id': instance.id,
       'name': instance.name,
       'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
       'venue': instance.venue?.toJson(),
       'file': instance.file,
     };
@@ -739,6 +745,9 @@ Models$Query$Objectmodels$Results _$Models$Query$Objectmodels$ResultsFromJson(
     Models$Query$Objectmodels$Results()
       ..id = json['id'] as int?
       ..name = json['name'] as String?
+      ..updatedAt = json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String)
       ..createdAt = json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String)
@@ -753,6 +762,7 @@ Map<String, dynamic> _$Models$Query$Objectmodels$ResultsToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'updated_at': instance.updatedAt?.toIso8601String(),
       'created_at': instance.createdAt?.toIso8601String(),
       'venue': instance.venue?.toJson(),
       'file': instance.file,
@@ -1017,6 +1027,18 @@ ResourceArguments _$ResourceArgumentsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ResourceArgumentsToJson(ResourceArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
+    };
+
+CreateModelArguments _$CreateModelArgumentsFromJson(
+        Map<String, dynamic> json) =>
+    CreateModelArguments(
+      venue_id: json['venue_id'] as int,
+    );
+
+Map<String, dynamic> _$CreateModelArgumentsToJson(
+        CreateModelArguments instance) =>
+    <String, dynamic>{
+      'venue_id': instance.venue_id,
     };
 
 ModelArguments _$ModelArgumentsFromJson(Map<String, dynamic> json) =>

@@ -54,7 +54,7 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
             right: 100,
             child: Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 Container(
                     decoration: BoxDecoration(
                       color: Colors.black54,
@@ -64,7 +64,7 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
                       padding: const EdgeInsets.all(4.0),
                       child: _buildDropdown(),
                     )),
-                Spacer(),
+                const Spacer(),
               ],
             )),
       ]),

@@ -18,7 +18,8 @@ class UserProvider extends ChangeNotifier {
     userProfile = User(
       id: profile.id!,
       name: profile.firstName!,
-      role: profile.role??'',
+      //role : "SCANNER",
+      role: profile.role ?? '', // todo: descomment
     );
   }
 }

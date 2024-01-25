@@ -14,7 +14,7 @@ class BodyHome extends StatelessWidget {
     final userP = Provider.of<UserProvider>(context);
     print("ROL: ${userP.user.role}");
     switch (userP.user.role) {
-      case "scanner":
+      case "SCANNER":
         return const BodyScanner();
       case "ADM":
         return const BodyAdmin();

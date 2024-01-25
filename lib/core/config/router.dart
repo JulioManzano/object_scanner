@@ -5,6 +5,7 @@ import 'package:untitled/presentation/screens/test/ui/home_view.dart';
 import 'package:untitled/presentation/widget/custom/camera_scan_screen.dart';
 
 import '../../presentation/screens/products/new_product/new_product_screen.dart';
+import '../../presentation/screens/products/scan_product/scan_product_screen.dart';
 import '../../presentation/screens/wrapper/wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,8 @@ final appRouter = GoRouter(
     //--------------------------------------------------------
     GoRoute(
       path: RouteName.scanProduct,
-      builder: (_, __) =>  ObjectDetectorView(),
+     // builder: (_, __) =>  ObjectDetectorView(),
+      builder: (_, __) =>  const ScanProductScreen(),
     ),
   ],
 );

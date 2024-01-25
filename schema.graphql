@@ -233,7 +233,7 @@ type CreateResource {
 }
 
 type CreateResources {
-    resource: ResourceType
+    resources: [ResourceType]
 }
 
 type CreateUser {
@@ -378,6 +378,8 @@ type ObjectModelType {
     id: Int
     "Nombre"
     name: String
+    "Fecha de actualizacion"
+    updated_at: CustomDateTime
     "Empresa"
     venue: VenueType
 }

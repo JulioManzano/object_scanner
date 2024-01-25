@@ -713,13 +713,13 @@ class CreateResource$Mutation extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CreateResources$Mutation$CreateResources$Resource extends JsonSerializable
-    with EquatableMixin {
-  CreateResources$Mutation$CreateResources$Resource();
+class CreateResources$Mutation$CreateResources$Resources
+    extends JsonSerializable with EquatableMixin {
+  CreateResources$Mutation$CreateResources$Resources();
 
-  factory CreateResources$Mutation$CreateResources$Resource.fromJson(
+  factory CreateResources$Mutation$CreateResources$Resources.fromJson(
           Map<String, dynamic> json) =>
-      _$CreateResources$Mutation$CreateResources$ResourceFromJson(json);
+      _$CreateResources$Mutation$CreateResources$ResourcesFromJson(json);
 
   int? id;
 
@@ -728,7 +728,7 @@ class CreateResources$Mutation$CreateResources$Resource extends JsonSerializable
 
   @override
   Map<String, dynamic> toJson() =>
-      _$CreateResources$Mutation$CreateResources$ResourceToJson(this);
+      _$CreateResources$Mutation$CreateResources$ResourcesToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -740,10 +740,10 @@ class CreateResources$Mutation$CreateResources extends JsonSerializable
           Map<String, dynamic> json) =>
       _$CreateResources$Mutation$CreateResourcesFromJson(json);
 
-  CreateResources$Mutation$CreateResources$Resource? resource;
+  List<CreateResources$Mutation$CreateResources$Resources?>? resources;
 
   @override
-  List<Object?> get props => [resource];
+  List<Object?> get props => [resources];
 
   @override
   Map<String, dynamic> toJson() =>
@@ -954,12 +954,15 @@ class Model$Query$Objectmodel extends JsonSerializable with EquatableMixin {
   @JsonKey(name: 'created_at')
   DateTime? createdAt;
 
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
+
   Model$Query$Objectmodel$Venue? venue;
 
   String? file;
 
   @override
-  List<Object?> get props => [id, name, createdAt, venue, file];
+  List<Object?> get props => [id, name, createdAt, updatedAt, venue, file];
 
   @override
   Map<String, dynamic> toJson() => _$Model$Query$ObjectmodelToJson(this);
@@ -1015,6 +1018,9 @@ class Models$Query$Objectmodels$Results extends JsonSerializable
 
   String? name;
 
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
+
   @JsonKey(name: 'created_at')
   DateTime? createdAt;
 
@@ -1023,7 +1029,7 @@ class Models$Query$Objectmodels$Results extends JsonSerializable
   String? file;
 
   @override
-  List<Object?> get props => [id, name, createdAt, venue, file];
+  List<Object?> get props => [id, name, updatedAt, createdAt, venue, file];
 
   @override
   Map<String, dynamic> toJson() =>
@@ -3057,7 +3063,7 @@ final CREATE_RESOURCES_MUTATION_DOCUMENT = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
-            name: NameNode(value: 'resource'),
+            name: NameNode(value: 'resources'),
             alias: null,
             arguments: [],
             directives: [],
@@ -3342,12 +3348,39 @@ class ResourceQuery extends GraphQLQuery<Resource$Query, ResourceArguments> {
       Resource$Query.fromJson(json);
 }
 
+@JsonSerializable(explicitToJson: true)
+class CreateModelArguments extends JsonSerializable with EquatableMixin {
+  CreateModelArguments({required this.venue_id});
+
+  @override
+  factory CreateModelArguments.fromJson(Map<String, dynamic> json) =>
+      _$CreateModelArgumentsFromJson(json);
+
+  late int venue_id;
+
+  @override
+  List<Object?> get props => [venue_id];
+
+  @override
+  Map<String, dynamic> toJson() => _$CreateModelArgumentsToJson(this);
+}
+
 final CREATE_MODEL_MUTATION_DOCUMENT_OPERATION_NAME = 'CreateModel';
 final CREATE_MODEL_MUTATION_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.mutation,
     name: NameNode(value: 'CreateModel'),
-    variableDefinitions: [],
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'venue_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
@@ -3356,7 +3389,7 @@ final CREATE_MODEL_MUTATION_DOCUMENT = DocumentNode(definitions: [
         arguments: [
           ArgumentNode(
             name: NameNode(value: 'venue_id'),
-            value: IntValueNode(value: '1'),
+            value: VariableNode(name: NameNode(value: 'venue_id')),
           )
         ],
         directives: [],
@@ -3383,8 +3416,8 @@ final CREATE_MODEL_MUTATION_DOCUMENT = DocumentNode(definitions: [
 ]);
 
 class CreateModelMutation
-    extends GraphQLQuery<CreateModel$Mutation, JsonSerializable> {
-  CreateModelMutation();
+    extends GraphQLQuery<CreateModel$Mutation, CreateModelArguments> {
+  CreateModelMutation({required this.variables});
 
   @override
   final DocumentNode document = CREATE_MODEL_MUTATION_DOCUMENT;
@@ -3393,7 +3426,10 @@ class CreateModelMutation
   final String operationName = CREATE_MODEL_MUTATION_DOCUMENT_OPERATION_NAME;
 
   @override
-  List<Object?> get props => [document, operationName];
+  final CreateModelArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
 
   @override
   CreateModel$Mutation parse(Map<String, dynamic> json) =>
@@ -3462,6 +3498,13 @@ final MODEL_QUERY_DOCUMENT = DocumentNode(definitions: [
           ),
           FieldNode(
             name: NameNode(value: 'created_at'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'updated_at'),
             alias: null,
             arguments: [],
             directives: [],
@@ -3649,6 +3692,13 @@ final MODELS_QUERY_DOCUMENT = DocumentNode(definitions: [
               ),
               FieldNode(
                 name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'updated_at'),
                 alias: null,
                 arguments: [],
                 directives: [],

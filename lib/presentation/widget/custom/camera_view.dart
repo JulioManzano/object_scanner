@@ -6,15 +6,15 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 
 class CameraView extends StatefulWidget {
-  CameraView(
-      {Key? key,
-        required this.customPaint,
-        required this.onImage,
-        this.onCameraFeedReady,
-        this.onDetectorViewModeChanged,
-        this.onCameraLensDirectionChanged,
-        this.initialCameraLensDirection = CameraLensDirection.back})
-      : super(key: key);
+  const CameraView({
+    Key? key,
+    required this.customPaint,
+    required this.onImage,
+    this.onCameraFeedReady,
+    this.onDetectorViewModeChanged,
+    this.onCameraLensDirectionChanged,
+    this.initialCameraLensDirection = CameraLensDirection.back,
+  }) : super(key: key);
 
   final CustomPaint? customPaint;
   final Function(InputImage inputImage) onImage;
@@ -83,109 +83,50 @@ class _CameraViewState extends State<CameraView> {
         children: <Widget>[
           Center(
             child: _changingCameraLens
-                ? Center(
-              child: const Text('Changing camera lens'),
-            )
+                ? const Center(
+                    child: Text('Changing camera lens'),
+                  )
                 : CameraPreview(
-              _controller!,
-              child: widget.customPaint,
-            ),
+                    _controller!,
+                    child: widget.customPaint,
+                  ),
           ),
           _backButton(),
-          _switchLiveCameraToggle(),
-          _detectionViewModeToggle(),
           _zoomControl(),
-          _exposureControl(),
         ],
       ),
     );
   }
 
   Widget _backButton() => Positioned(
-    top: 40,
-    left: 8,
-    child: SizedBox(
-      height: 50.0,
-      width: 50.0,
-      child: FloatingActionButton(
-        heroTag: Object(),
-        onPressed: () => Navigator.of(context).pop(),
-        backgroundColor: Colors.black54,
-        child: Icon(
-          Icons.arrow_back_ios_outlined,
-          size: 20,
+        top: 40,
+        left: 8,
+        child: SizedBox(
+          height: 50.0,
+          width: 50.0,
+          child: FloatingActionButton(
+            heroTag: Object(),
+            onPressed: () => Navigator.of(context).pop(),
+            backgroundColor: Colors.white,
+            child: const Icon(
+              Icons.arrow_back_ios_outlined,
+              size: 20,
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+      );
 
-  Widget _detectionViewModeToggle() => Positioned(
-    bottom: 8,
-    left: 8,
-    child: SizedBox(
-      height: 50.0,
-      width: 50.0,
-      child: FloatingActionButton(
-        heroTag: Object(),
-        onPressed: widget.onDetectorViewModeChanged,
-        backgroundColor: Colors.black54,
-        child: Icon(
-          Icons.photo_library_outlined,
-          size: 25,
-        ),
-      ),
-    ),
-  );
-
-  Widget _switchLiveCameraToggle() => Positioned(
-    bottom: 8,
-    right: 8,
-    child: SizedBox(
-      height: 50.0,
-      width: 50.0,
-      child: FloatingActionButton(
-        heroTag: Object(),
-        onPressed: _switchLiveCamera,
-        backgroundColor: Colors.black54,
-        child: Icon(
-          Platform.isIOS
-              ? Icons.flip_camera_ios_outlined
-              : Icons.flip_camera_android_outlined,
-          size: 25,
-        ),
-      ),
-    ),
-  );
 
   Widget _zoomControl() => Positioned(
-    bottom: 16,
-    left: 0,
-    right: 0,
-    child: Align(
-      alignment: Alignment.bottomCenter,
-      child: SizedBox(
-        width: 250,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Slider(
-                value: _currentZoomLevel,
-                min: _minAvailableZoom,
-                max: _maxAvailableZoom,
-                activeColor: Colors.white,
-                inactiveColor: Colors.white30,
-                onChanged: (value) async {
-                  setState(() {
-                    _currentZoomLevel = value;
-                  });
-                  await _controller?.setZoomLevel(value);
-                },
-              ),
-            ),
+        top: 240,
+        right: 8,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxHeight: 250,
+          ),
+          child: Column(children: [
             Container(
-              width: 50,
+              width: 55,
               decoration: BoxDecoration(
                 color: Colors.black54,
                 borderRadius: BorderRadius.circular(10.0),
@@ -195,65 +136,35 @@ class _CameraViewState extends State<CameraView> {
                 child: Center(
                   child: Text(
                     '${_currentZoomLevel.toStringAsFixed(1)}x',
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-    ),
-  );
-
-  Widget _exposureControl() => Positioned(
-    top: 40,
-    right: 8,
-    child: ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: 250,
-      ),
-      child: Column(children: [
-        Container(
-          width: 55,
-          decoration: BoxDecoration(
-            color: Colors.black54,
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                '${_currentExposureOffset.toStringAsFixed(1)}x',
-                style: TextStyle(color: Colors.white),
+            Expanded(
+              child: RotatedBox(
+                quarterTurns: 3,
+                child: SizedBox(
+                  height: 30,
+                  child: Slider(
+                    value: _currentZoomLevel,
+                    min: _minAvailableZoom,
+                    max: _maxAvailableZoom,
+                    activeColor: Colors.white,
+                    inactiveColor: Colors.white30,
+                    onChanged: (value) async {
+                      setState(() {
+                        _currentZoomLevel = value;
+                      });
+                      await _controller?.setZoomLevel(value);
+                    },
+                  ),
+                ),
               ),
-            ),
-          ),
+            )
+          ]),
         ),
-        Expanded(
-          child: RotatedBox(
-            quarterTurns: 3,
-            child: SizedBox(
-              height: 30,
-              child: Slider(
-                value: _currentExposureOffset,
-                min: _minAvailableExposureOffset,
-                max: _maxAvailableExposureOffset,
-                activeColor: Colors.white,
-                inactiveColor: Colors.white30,
-                onChanged: (value) async {
-                  setState(() {
-                    _currentExposureOffset = value;
-                  });
-                  await _controller?.setExposureOffset(value);
-                },
-              ),
-            ),
-          ),
-        )
-      ]),
-    ),
-  );
+      );
 
   Future _startLiveFeed() async {
     final camera = _cameras[_cameraIndex];
@@ -340,7 +251,7 @@ class _CameraViewState extends State<CameraView> {
       rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
     } else if (Platform.isAndroid) {
       var rotationCompensation =
-      _orientations[_controller!.value.deviceOrientation];
+          _orientations[_controller!.value.deviceOrientation];
       if (rotationCompensation == null) return null;
       if (camera.lensDirection == CameraLensDirection.front) {
         // front-facing
