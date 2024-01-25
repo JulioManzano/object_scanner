@@ -19,9 +19,12 @@ class Wrapper extends StatelessWidget {
         if (snap.connectionState == ConnectionState.done) {
           if (snap.data != null) {
             if (snap.data!.profile == null) {
+              print("PUBLIC");
+
               Enviroment.setPublic();
               return const LoginRegisterScreen();
             } else {
+              print("TOKEN ${snap.data!.token!}");
               context
                   .read<UserProvider>()
                   .setUserNN(TokenAuth$Mutation$TokenAuth.fromJson(

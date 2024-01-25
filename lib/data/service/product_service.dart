@@ -83,6 +83,7 @@ class ProductService {
     }
 
     if (!result.hasException && result.isNotLoading) {
+      print("LLEGO ACA: ${result.data}");
       return CreateProduct$Mutation.fromJson(result.data!).createProduct!.product!.id!;
     }
     return null;

@@ -10,6 +10,7 @@ import '../../../provider/data_info/loading_notifier.dart';
 import '../../../provider/data_info/user_provider.dart';
 import '../../../widget/components/basic_button.dart';
 import '../../../widget/components/text_field_form.dart';
+import '../../navigation/home/widget/home.dart';
 import '../../wrapper/wrapper.dart';
 
 class LoginForm extends StatefulWidget {
@@ -75,6 +76,8 @@ class _LoginFormState extends State<LoginForm> {
 
     if (user != null && context.mounted && user.token != null) {
       //write profile data
+      print("TOKEN LOG: ${user.token!}");
+
       context.read<UserProvider>().setUserNN(user);
       context.read<MainProvider>().savePreference('token', user.token!);
 
@@ -82,7 +85,7 @@ class _LoginFormState extends State<LoginForm> {
       Navigator.popUntil(context, (route) => route.isFirst);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => const Wrapper()),
+        MaterialPageRoute(builder: (_) => const Home()),
       );
     }
   }

@@ -25,12 +25,15 @@ class _FormNewProductState extends State<FormNewProduct> {
 
   @override
   Widget build(BuildContext context) {
-    final formP = Provider.of<NewProductFormProvider>(context, listen: false);
+    final formP = Provider.of<ProductFormProvider>(context, listen: false);
     return loading
-        ? const LoadingIndicator(text: "Procesando imagen...",)
+        ? const LoadingIndicator(
+            text: "Procesando imagen...",
+          )
         : Form(
             child: Column(
               children: [
+                const SizedBox(height: 8),
                 TextFieldForm(
                   hintText: "Titulo",
                   controller: formP.titleController,
@@ -64,7 +67,7 @@ class _FormNewProductState extends State<FormNewProduct> {
     setState(() {
       loading = true;
     });
-    final formP = Provider.of<NewProductFormProvider>(context, listen: false);
+    final formP = Provider.of<ProductFormProvider>(context, listen: false);
     double? price = double.tryParse(formP.priceController.text);
     if (price == null) {
       DialogUtils.showSnackBar(context,
@@ -84,8 +87,12 @@ class _FormNewProductState extends State<FormNewProduct> {
           files: formP.images,
         );
         print("CreateResources: $createResourceRes");
-        int? modelCreated = await ObjectModelService().createModel(venueId: 1);
-        print("ModelCreate: $modelCreated");
+        if (createResourceRes) {
+          int? modelCreated = await ObjectModelService().createModel(
+            venueId: 1,
+          );
+          print("ModelCreate: $modelCreated");
+        }
 
         if (createResourceRes && context.mounted) {
           DialogUtils.basicDialog(context, title: "Producto creado con exito");

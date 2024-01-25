@@ -15,11 +15,14 @@ class MainProvider extends ChangeNotifier {
 
   Future<VerifyAccount$Mutation$VerifyAccount?> verifyAccount() async {
     _sharedPreferences ??= await SharedPreferences.getInstance();
+
     String? token = _sharedPreferences!.getString('token');
     if (token == null) return null;
 
     var profileToken = await AuthService()
         .verifyAccount(token: token, platform: Utils.getPlatform());
+
+    print("PROFILE TOKEN VERIFY: ${profileToken!.toJson()}");
 
     return profileToken;
   }

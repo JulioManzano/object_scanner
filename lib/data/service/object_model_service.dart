@@ -58,10 +58,11 @@ class ObjectModelService {
     }
 
     if (!result.hasException && result.isNotLoading) {
+      print("MODEL CREATE: ${result.data}");
       return CreateModel$Mutation.fromJson(result.data!)
-          .createObjectModel!
-          .objectmodel!
-          .id!;
+          .createObjectModel
+          ?.objectmodel
+          ?.id ?? -1;
     }
     return null;
   }

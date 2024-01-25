@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../../data/models/img_crop.dart';
 
-class NewProductFormProvider extends ChangeNotifier {
+class ProductFormProvider extends ChangeNotifier {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController countController = TextEditingController();
-  TextEditingController priceController  = TextEditingController();
+  TextEditingController priceController = TextEditingController();
 
   List<ImgCrop> images = [];
+  String? idProduct;
+
+  ProductFormProvider({this.idProduct});
 
   @override
   void dispose() {

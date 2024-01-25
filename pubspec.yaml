@@ -43,6 +43,7 @@ dependencies:
 
   native_image_cropper: ^0.4.0
   image_cropper: ^4.0.1
+  flutter_image_compress: ^2.1.0
 
   tflite_flutter_plus: ^0.0.1
   tflite_flutter_helper_plus: ^0.0.2

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:native_image_cropper/native_image_cropper.dart';
+import 'package:untitled/core/utils/utils.dart';
 import 'package:untitled/data/models/img_crop.dart';
 import 'a_aspect_ratio_dropdown.dart';
 import 'a_image_format_dropdown.dart';
@@ -100,8 +101,9 @@ class _CutImageScreenState extends State<CutImageScreen> {
 
   Future<void> _cropImage(BuildContext context) async {
     final croppedBytes = await _controller.crop(format: _format);
+    final respose =  await Utils.testComporessList(croppedBytes);
     if (mounted) {
-      context.pop(croppedBytes);
+      context.pop(respose);
     }
   }
 }

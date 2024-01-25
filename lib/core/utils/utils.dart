@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/data/service/object_model_service.dart';
 import 'package:untitled/models/api.graphql.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class Utils {
   static savePreference(String key, String value) async {
@@ -60,5 +61,16 @@ class Utils {
   static Future<bool> downloadModel(String link) async {
     print("Link");
     return true;
+  }
+
+  static Future<Uint8List> testComporessList(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 100,
+      minWidth: 100,
+      quality: 20,
+    );
+    print("COMPRESS: ${result.length}");
+    return result;
   }
 }

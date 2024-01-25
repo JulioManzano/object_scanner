@@ -98,7 +98,7 @@ class ResourceService {
 
     if (result.hasException) {
       if (kDebugMode) {
-        print(result.exception.toString());
+        print("EXC (RESOURCE SERVICE) :${result.exception.toString()}");
       }
     }
 

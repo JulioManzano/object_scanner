@@ -21,7 +21,7 @@ class _PreviewProductScanState extends State<PreviewProductScan> {
 
   @override
   Widget build(BuildContext context) {
-    final pFormP = Provider.of<NewProductFormProvider>(context);
+    final pFormP = Provider.of<ProductFormProvider>(context);
     return Column(
       children: [
         Padding(
@@ -75,6 +75,7 @@ class _PreviewProductScanState extends State<PreviewProductScan> {
   pickImage(ImageSource source) async {
     final XFile? file = await _picker.pickImage(
       source: source,
+      imageQuality: 20,
     );
 
     cropImageAndAdd(file);
@@ -98,7 +99,7 @@ class _PreviewProductScanState extends State<PreviewProductScan> {
           MaterialPageRoute(builder: (_) => CutImageScreen(bytes: uint8list)),
         );
         if (res != null && context.mounted) {
-          context.read<NewProductFormProvider>().addImage(
+          context.read<ProductFormProvider>().addImage(
                 ImgCrop(file: file, uint8list: res),
               );
         }

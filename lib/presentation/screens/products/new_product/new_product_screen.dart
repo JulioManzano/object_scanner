@@ -16,7 +16,7 @@ class FormProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => NewProductFormProvider(),
+      create: (_) => ProductFormProvider(idProduct: idProduct),
       child: const Scaffold(
         appBar: AppBarBasic(
           title: "Nuevo producto",
