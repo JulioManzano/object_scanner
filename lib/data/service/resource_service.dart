@@ -82,7 +82,7 @@ class ResourceService {
     }
     print("LLEGO 2 ");
 
-    final GraphQLClient client = getGraphQLClient(service: 'create_resources');
+    final GraphQLClient client = getGraphQLPublicClient(service: 'create_resources');
     final MutationOptions options = MutationOptions(
       document: CREATE_RESOURCES_MUTATION_DOCUMENT,
       variables: CreateResourcesArguments(
@@ -122,7 +122,7 @@ class ResourceService {
       contentType: MediaType("image", file.ext),
     );
 
-    final GraphQLClient client = getGraphQLClient(service: 'create_resource');
+    final GraphQLClient client = getGraphQLPublicClient(service: 'create_resource');
     final MutationOptions options = MutationOptions(
       document: CREATE_RESOURCE_MUTATION_DOCUMENT,
       variables: CreateResourceArguments(
