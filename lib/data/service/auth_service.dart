@@ -57,14 +57,4 @@ class AuthService {
     }
     return null;
   }
-
-  Future<User?> createUserAndPassword(
-      String email, String password, Function(String error) onError) async {
-    return User(id: 1, name: "Julio", role: "admin");
-    return null;
-  }
-
-  Future signOut() async {
-    //
-  }
 }
